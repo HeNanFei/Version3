@@ -39,13 +39,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">用户身份</label>
                 <div class="layui-input-block">:
-                    <input type="checkbox" name="type" title="超级管理员" value="7">
-                    <input type="checkbox" name="type" title="语文老师" value="1">
-                    <input type="checkbox" name="type" title="数学老师" value="2">
-                    <input type="checkbox" name="type" title="英语老师" value="3">
-                    <input type="checkbox" name="type" title="化学老师" value="4">
-                    <input type="checkbox" name="type" title="物理老师" value="5">
-                    <input type="checkbox" name="type" title="生物老师" value="6">
+                    <input type="checkbox" id="super" name="type" title="超级管理员" value="7" >
+                    <input type="checkbox" id="c" name="type" title="语文老师" value="1">
+                    <input type="checkbox" id="m" name="type" title="数学老师" value="2">
+                    <input type="checkbox" id="e" name="type" title="英语老师" value="3">
+                    <input type="checkbox" id="che" name="type" title="化学老师" value="4">
+                    <input type="checkbox" id="ph" name="type" title="物理老师" value="5">
+                    <input type="checkbox" id="bio" name="type" title="生物老师" value="6">
                 </div>
             </div>
 
@@ -78,7 +78,37 @@
             success:function (msg) {
                 $('#username').val(msg.username);
                 $('#password').val(msg.password);
-                alert(msg.type);
+                //alert(msg.type);
+                var form1 = JSON.stringify(msg.type)
+                var form2 = form1.substring(1,form1.length-1);
+                var form3 = form2.substring(0,form2.length-1);
+                var strings = form3.split(",");
+                for(var i= 0;i<strings.length;i++){
+
+                    if (strings[i] == '7'){
+                        $('#super').attr("checked",true);
+                    }
+                    if (strings[i] == '1'){
+                        $('#c').attr("checked",true);
+                    }
+                    if (strings[i] == '2'){
+                        $('#m').attr("checked",true);
+                    }
+                    if (strings[i] == '3'){
+                        $('#e').attr("checked",true);
+                    }
+                    if (strings[i] == '4'){
+                        $('#che').attr("checked",true);
+                    }
+                    if (strings[i] == '5'){
+                        $('#ph').attr("checked",true);
+                    }
+                    if (strings[i] == '6'){
+                        $('#bio').attr("checked",true);
+                    }
+                }
+
+
 
             },error:function () {
                 alert('权限不足');

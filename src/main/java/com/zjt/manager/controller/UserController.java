@@ -31,28 +31,27 @@ public class UserController {
     @ResponseBody
    @RequestMapping("/user/add")
    public String add(String user1){
-        System.out.println(user1);
-
        List<Integer> ridList = new ArrayList<>();
-
        User user2 = JSONObject.parseObject(user1, User.class);
        String type = user2.getType();
 
        String[] split = type.substring(1, type.length() - 1).split(",");
-
+       String rebuildString ="";
        //获取用户角色标识
       for(int i=0;i<split.length;i++){
           String strings = split[i];
           String subString = strings.substring(1,strings.length()-1);
 
-
+          rebuildString += subString+",";
         int i2 = Integer.parseInt(subString);
 
           ridList.add(i2);
 
       }
+       
        String password = Bcry.bcry(user2.getPassword());
        user2.setPassword(password);
+       user2.setType(rebuildString);
        userService.insertUser(user2);
        //为用户添加相关角色信息
        User user = userService.selectUserByName(user2.getUsername());
