@@ -136,6 +136,15 @@ public class UserController {
         return userService.getById(uuid);
     }
 
+    @ResponseBody
+    @RequestMapping("/user/deleteSingle")
+    public String deleteSingle(String ids){
 
+        List<Integer> list = new ArrayList<>();
+        list.add( Integer.parseInt(ids));
+
+        userService.deleteUser(list);
+        return "删除成功";
+    }
 
 }

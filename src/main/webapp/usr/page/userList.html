@@ -182,7 +182,7 @@
                 url:'../../user/delete',
                 data:{ids:strings},
                 success:function (msg) {
-                    layer.alert(msg);
+                    //layer.alert(msg);
                 },error:function () {
                     alert('无法删除');
                 }
@@ -212,8 +212,23 @@
                 })
 
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
+                layer.confirm('真的删除么', function (index) {
+                    var data = obj.data;
+                    var uid = data.uid;
                     obj.del();
+                    //alert(uid);
+                    $.ajax({
+                        url:'../../user/delete',
+                        data:{ids:uid},
+                        success:function (msg) {
+                            //layer.alert(msg);
+                        },error:function () {
+                            alert('无法删除');
+                        }
+                    })
+
+
+
                     layer.close(index);
                 });
             }
