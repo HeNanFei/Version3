@@ -69,5 +69,8 @@ public interface UserMapper {
     List<User> selectByLimit(Integer page, Integer limit);
 
     List<User> selectUserAndRoles();
+
+
+    List<User> selectByCriteron(User user);
 	
 }

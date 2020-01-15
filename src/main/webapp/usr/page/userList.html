@@ -21,29 +21,18 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">用户姓名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                                <input type="text" name="username" id="username" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户性别</label>
+                            <label class="layui-form-label">用户角色</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="sex" autocomplete="off" class="layui-input">
                             </div>
                         </div>
+
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户城市</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="city" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户职业</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
+                            <a class="layui-btn" lay-submit="" id="searchButton" lay-filter="data-search-btn">搜索</a>
                         </div>
                     </div>
                 </form>
@@ -71,7 +60,7 @@
             area: ['820px', '740px'], //宽高
             content: '../../usr/page/updateUser.html',
             end:function () {
-                alert('窗口关闭');
+               // alert('窗口关闭');
                 history.go(0);
             }
         });
@@ -114,11 +103,6 @@
 
 
                 handleJson(data);
-                layer.alert(JSON.stringify(data.field.type), {
-                    title: '最终的提交信息a'
-                })
-            /*    var type = data.type;
-                alert(type.length);*/
                 return false;
             });
 
@@ -151,18 +135,19 @@
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
-            });
+            var result = JSON.stringify(data.field.username);
+           var username = result.substring(1,result.length-1);
+
 
             //执行搜索重载
             table.reload('currentTableId', {
+
                 page: {
                     curr: 1
                 }
                 , where: {
-                    searchParams: result
+                    username:username
+
                 }
             }, 'data');
 
@@ -178,7 +163,7 @@
                 area: ['820px', '740px'], //宽高
                 content: '../../usr/page/addUser.html',
                 end:function () {
-                    alert('窗口关闭');
+
                     history.go(0);
                 }
             });
@@ -197,9 +182,9 @@
                 url:'../../user/delete',
                 data:{ids:strings},
                 success:function (msg) {
-                    alert(msg);
+                    layer.alert(msg);
                 },error:function () {
-                    alert('deleteFailed');
+                    alert('无法删除');
                 }
             })
             history.go(0);
@@ -213,14 +198,14 @@
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
-                layer.alert('编辑行：<br>' + JSON.stringify(data))
+                //layer.alert('编辑行：<br>' + JSON.stringify(data))
 
                 var uid = data.uid;
                 $.ajax({
                     url:'../../user/update',
                     data:{uid:uid},
                     success:function (msg) {
-                        alert(msg);
+                        //alert(msg);
                     },error:function () {
                         alert('updateFailed');
                     }
@@ -292,20 +277,9 @@
                 });
 
 
-
-
-
-
-
-
-
-
-//window.location.reload();
-                //parent.location.reload();
-                alert(msg);
             },
             error:function () {
-                alert("realUpdate failed");
+                alert("权限不足");
             }
         })
 

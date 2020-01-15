@@ -66,7 +66,7 @@ public class UserController {
 
    @ResponseBody
    @RequestMapping("/user/list")
-    public Map list(Integer page,Integer limit){
+    public Map list(Integer page,Integer limit,String username){
        List<User> list1 = userMapper.selectByLimit((page-1)*limit, limit-1);
        List<User> list = userService.list();
 
@@ -80,8 +80,14 @@ public class UserController {
        map.put("code",0);
        map.put("msg","");
        map.put("count",list.size());
-       map.put("data",list1);
-
+       if(username != null){
+           User user = new User();
+           user.setUsername(username);
+           List<User> users = userService.selectByCriterion(user);
+           map.put("data",users);
+       }else {
+           map.put("data", list1);
+       }
        return map;
    }
 
@@ -124,5 +130,13 @@ public class UserController {
         userService.deleteUser(list);
         return "删除成功";
     }
+
+    @ResponseBody
+    @RequestMapping("/user/single")
+    public User tt(){
+        return userService.getById(uuid);
+    }
+
+
 
 }

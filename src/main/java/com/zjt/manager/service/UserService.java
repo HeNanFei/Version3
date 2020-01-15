@@ -27,4 +27,7 @@ public interface UserService {
 
     void deleteUser(List<Integer> uids);
 
+    List<User> selectByCriterion(User user);
+
+    User selectUserById(Integer uid);
 }

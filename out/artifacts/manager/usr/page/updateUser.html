@@ -26,13 +26,13 @@
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
                     <input type="hidden" name="uid" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="null">
-                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                    <input type="text" name="username" id="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名"  class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户密码</label>
                 <div class="layui-input-inline">
-                    <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" id="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
             </div>
@@ -72,6 +72,22 @@
 <script src="../../js/jquery-1.11.3.min.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+    $(function () {
+        $.ajax({
+            url:'../../user/single',
+            success:function (msg) {
+                $('#username').val(msg.username);
+                $('#password').val(msg.password);
+                alert(msg.type);
+
+            },error:function () {
+                alert('权限不足');
+            }
+
+        })
+    })
+
+
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
             , layer = layui.layer
@@ -126,10 +142,10 @@
             }
             data.field.type = check_val;
             var user1 = JSON.stringify(data.field);
-            layer.alert(JSON.stringify(data.field), {
+           /* layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             })
-
+*/
 
              $.ajax({
                     url:'../../user/realUpdate',

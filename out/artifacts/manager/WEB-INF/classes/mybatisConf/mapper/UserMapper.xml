@@ -248,4 +248,14 @@
        from user u inner join urole ur on u.uid = ur.uid;
   </select>
 
+  <select id="selectByCriteron" resultMap="UroleResultMap">
+
+   select * from user where
+    <if test="username != null">
+      username like CONCAT('%',#{username},'%')
+    </if>
+
+
+  </select>
+
 </mapper>

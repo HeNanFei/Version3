@@ -84,5 +84,21 @@ public class UserServiceImpl implements UserService{
         userMapper.deleteByExample(userExample);
     }
 
+    @Override
+    public List<User> selectByCriterion(User user) {
+
+
+        return userMapper.selectByCriteron(user);
+    }
+
+    @Override
+    public User selectUserById(Integer uid) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUidEqualTo(uid);
+
+        return userMapper.selectByExample(userExample).get(0);
+    }
+
 
 }
