@@ -2,12 +2,19 @@ package com.zjt.manager;
 
 
 
+import com.zjt.manager.mapper.TeacherMapper;
+import com.zjt.manager.pojo.Teacher;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import java.util.List;
+
 @SpringBootTest
 class ManagerApplicationTests {
+	@Autowired
+	private TeacherMapper teacherMapper;
 
 	@Test
 	void contextLoads() {
@@ -22,5 +29,14 @@ class ManagerApplicationTests {
 
 		//String string = "7","1";
 	}
+	@Test
+	public void testss(){
+		Teacher teacher = new Teacher();
+		teacher.setTname("何");
+		List<Teacher> teachers = teacherMapper.selectByCriteron("a");
 
+		for (Teacher teacher1 : teachers){
+			System.out.println(teacher1);
+		}
+	}
 }

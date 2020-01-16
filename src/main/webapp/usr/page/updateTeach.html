@@ -18,7 +18,7 @@
         </blockquote>
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>添加用户</legend>
+            <legend>修改教师信息</legend>
         </fieldset>
 
         <form class="layui-form" action="/manager/user/teacher/listTeacher">
@@ -26,46 +26,46 @@
                 <label class="layui-form-label">教师姓名</label>
                 <div class="layui-input-block">
                     <input type="hidden" name="tid" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="null">
-                    <input type="text" name="tname" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                    <input type="text" name="tname" id="tname" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">毕业院校</label>
                 <div class="layui-input-block">
-                    <input type="text" name="college" lay-verify="title" autocomplete="off" placeholder="毕业院校" class="layui-input">
+                    <input type="text" name="college" id="college" lay-verify="title" autocomplete="off" placeholder="毕业院校" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">性别</label>
                 <div class="layui-input-block">
-                    <input type="radio" name="tgender" value="男" title="男">
-                    <input type="radio" name="tgender" value="女" title="女">
+                    <input type="radio" name="tgender" value="男" title="男" id="man">
+                    <input type="radio" name="tgender" value="女" title="女" id="women">
                 </div>
             </div>
             <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">联系电话</label>
+                <label class="layui-form-label" >联系电话</label>
                 <div class="layui-input-inline">
-                    <input type="tel" name="tel" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                    <input type="tel" name="tel" id="tel" lay-verify="required|phone" autocomplete="off" class="layui-input">
                 </div>
             </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户身份</label>
                 <div class="layui-input-block">:
-                    <input type="checkbox" name="type" title="超级管理员" value="7">
-                    <input type="checkbox" name="type" title="语文老师" value="1">
-                    <input type="checkbox" name="type" title="数学老师" value="2">
-                    <input type="checkbox" name="type" title="英语老师" value="3">
-                    <input type="checkbox" name="type" title="化学老师" value="4">
-                    <input type="checkbox" name="type" title="物理老师" value="5">
-                    <input type="checkbox" name="type" title="生物老师" value="6">
+                    <input type="checkbox" id="super" name="type" title="超级管理员" value="7" >
+                    <input type="checkbox" id="c" name="type" title="语文老师" value="1">
+                    <input type="checkbox" id="m" name="type" title="数学老师" value="2">
+                    <input type="checkbox" id="e" name="type" title="英语老师" value="3">
+                    <input type="checkbox" id="che" name="type" title="化学老师" value="4">
+                    <input type="checkbox" id="ph" name="type" title="物理老师" value="5">
+                    <input type="checkbox" id="bio" name="type" title="生物老师" value="6">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">住址</label>
+                <label class="layui-form-label" >住址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="住址" class="layui-input">
+                    <input type="text" name="address" id="address" lay-verify="title" autocomplete="off" placeholder="住址" class="layui-input">
                 </div>
             </div>
 
@@ -98,6 +98,62 @@
 <script src="../../js/jquery-1.11.3.min.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+    $(function () {
+        $.ajax({
+            url:'../../teacher/single',
+            success:function (msg) {
+                //alert(JSON.stringify(msg));
+                $('#college').val(msg.college);
+                $('#tname').val(msg.tname);
+                $('#address').val(msg.address);
+                $('#tel').val(msg.tel);
+                if (msg.tgender == '男'){
+                    $('#man').attr("checked",true);
+                }else{
+                    $('#women').attr("checked",true);
+                }
+                //alert(msg.type);
+                var form1 = JSON.stringify(msg.type)
+
+                var form2 = form1.substring(1,form1.length-1);
+                var form3 = form2.substring(0,form2.length-1);
+                var strings = form3.split(",");
+
+                for(var i= 0;i<strings.length;i++){
+
+                    if (strings[i] == '7'){
+                        $('#super').attr("checked",true);
+                    }
+                    if (strings[i] == '1'){
+                        $('#c').attr("checked",true);
+                    }
+                    if (strings[i] == '2'){
+                        $('#m').attr("checked",true);
+                    }
+                    if (strings[i] == '3'){
+                        $('#e').attr("checked",true);
+                    }
+                    if (strings[i] == '4'){
+                        $('#che').attr("checked",true);
+                    }
+                    if (strings[i] == '5'){
+                        $('#ph').attr("checked",true);
+                    }
+                    if (strings[i] == '6'){
+                        $('#bio').attr("checked",true);
+                    }
+                }
+
+
+
+            },error:function () {
+                alert('权限不足');
+            }
+
+        })
+    })
+
+
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
             , layer = layui.layer
@@ -150,19 +206,17 @@
                     check_val.push(industryObj[k].value);
                 }
             }
-
             data.field.type = check_val;
-
-
-            var teacher = JSON.stringify(data.field);
+            var teacher1 = JSON.stringify(data.field);
+            alert(teacher1);
             layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             })
 
 
             $.ajax({
-                url:'../../teacher/add',
-                data:{teacher1:teacher},
+                url:'../../teacher/realUpdate',
+                data:{teacher1:teacher1},
                 success:function (msg) {
                     layer.alert(msg);
                 },

@@ -51,6 +51,10 @@ public class SecurityConfig{
 
             http.authorizeRequests().antMatchers("/test/**").authenticated().
                     antMatchers("/test/**").hasAuthority("1");
+
+            http.authorizeRequests().antMatchers("/teacher/**").authenticated().
+                    antMatchers("/teacher/**").hasAuthority("root");
+
         }
     }
 

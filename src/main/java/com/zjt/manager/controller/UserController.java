@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sun.scenario.effect.Identity;
+import com.zjt.manager.mapper.RoleMapper;
 import com.zjt.manager.mapper.UroleMapper;
 import com.zjt.manager.mapper.UserMapper;
+import com.zjt.manager.pojo.Role;
 import com.zjt.manager.pojo.User;
+import com.zjt.manager.service.RoleService;
 import com.zjt.manager.service.UroleService;
 import com.zjt.manager.service.UserService;
 import com.zjt.manager.util.Bcry;
@@ -27,6 +30,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UroleService uroleService;
+    @Autowired
+    private RoleService roleService;
 
     @ResponseBody
    @RequestMapping("/user/add")
@@ -65,7 +70,7 @@ public class UserController {
 
    @ResponseBody
    @RequestMapping("/user/list")
-    public Map list(Integer page,Integer limit,String username){
+    public Map list(Integer page,Integer limit,String username,String roleid){
        List<User> list1 = userMapper.selectByLimit((page-1)*limit, limit-1);
        List<User> list = userService.list();
 
@@ -80,11 +85,13 @@ public class UserController {
        map.put("msg","");
        map.put("count",list.size());
        if(username != null){
+           System.out.println(username+"______________________"+username);
            User user = new User();
            user.setUsername(username);
            List<User> users = userService.selectByCriterion(user);
            map.put("data",users);
        }else {
+           System.out.println("else"+"_____________________________");
            map.put("data", list1);
        }
        return map;
@@ -110,6 +117,21 @@ public class UserController {
         User user2 = JSONObject.parseObject(user1, User.class);
         user2.setUid(uuid);
         user2.setPassword(Bcry.bcry(user2.getPassword()));
+        String type = user2.getType();
+        String[] split = type.substring(1, type.length() - 1).split(",");
+        String rebuildString ="";
+        //获取用户角色标识
+        for(int i=0;i<split.length;i++){
+            String strings = split[i];
+            String subString = strings.substring(1,strings.length()-1);
+
+            rebuildString += subString+",";
+
+
+
+
+        }
+        user2.setType(rebuildString);
         userService.updateUser(user2);
 
         return "修改成功";
@@ -147,4 +169,12 @@ public class UserController {
         return "删除成功";
     }
 
+    @ResponseBody
+    @RequestMapping("/user/getRoles")
+    public List<Role> getRoles(){
+
+
+
+        return roleService.getAllRole();
+    }
 }

@@ -19,27 +19,9 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户姓名</label>
+                            <label class="layui-form-label">教师姓名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="username" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户性别</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="sex" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户城市</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="city" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户职业</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
+                                <input type="text" name="teachername" id="teachername" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -56,13 +38,74 @@
         </div>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit" onclick="change()">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
     </div>
 </div>
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
+    function change(){
+
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['820px', '740px'], //宽高
+            content: '../../usr/page/updateTeach.html',
+            end:function () {
+                // alert('窗口关闭');
+                history.go(0);
+            }
+        });
+
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+            //创建一个编辑器
+            var editIndex = layedit.build('LAY_demo_editor');
+
+            //自定义验证规则
+            form.verify({
+                title: function (value) {
+
+                }
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+                , content: function (value) {
+                    layedit.sync(editIndex);
+                }
+            });
+
+
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+
+
+                handleJson(data);
+                return false;
+            });
+
+        });
+
+    }
+
+
+
+
     layui.use(['form', 'table'], function () {
         var $ = layui.jquery,
             form = layui.form,
@@ -70,7 +113,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '../../user/teacher/list',
+            url: '../../teacher/list',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
                 {field: 'tid', width: 80, title: 'ID', sort: true},
@@ -79,6 +122,7 @@
                 {field: 'tel', width: 300, title: '联系电话', sort: true},
                 {field: 'type', width: 150, title: '任课科目'},
                 {field: 'address', width: 150, title: '住址'},
+                {field: 'college', width: 150, title: '毕业院校'},
                 {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
 
 
@@ -91,10 +135,12 @@
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
+            var result = JSON.stringify(data.field.teachername);
+            var teachername = result.substring(1,result.length-1);
+           // var roleid = JSON.stringify(data.field.roleid);
+            /*layer.alert(teachername, {
                 title: '最终的搜索信息'
-            });
+            });*/
 
             //执行搜索重载
             table.reload('currentTableId', {
@@ -102,7 +148,7 @@
                     curr: 1
                 }
                 , where: {
-                    searchParams: result
+                    teachername:teachername
                 }
             }, 'data');
 
@@ -112,6 +158,16 @@
         // 监听添加操作
         $(".data-add-btn").on("click", function () {
             layer.msg('添加数据');
+            layer.open({
+                type: 2,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['820px', '740px'], //宽高
+                content: '../../usr/page/addTeacher.html',
+                end:function () {
+
+                    history.go(0);
+                }
+            });
         });
 
         // 监听删除操作
@@ -119,6 +175,21 @@
             var checkStatus = table.checkStatus('currentTableId')
                 , data = checkStatus.data;
             layer.alert(JSON.stringify(data));
+            var strings = '';
+            $.each(data,function (i,item) {
+                strings += item.tid+',';
+            })
+            $.ajax({
+                url:'../../teacher/delete',
+                data:{ids:strings},
+                success:function (msg) {
+                    //layer.alert(msg);
+                },error:function () {
+                    alert('无法删除');
+                }
+            })
+            history.go(0);
+
         });
 
         //监听表格复选框选择
@@ -128,12 +199,36 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
+            var tid = JSON.stringify(data.tid);
+            //alert(tid+"jdjkf");
             if (obj.event === 'edit') {
-                layer.alert('编辑行：<br>' + JSON.stringify(data))
+                //layer.alert('编辑行：<br>' + JSON.stringify(data))
+                var uid = data.tid;
+                //alert(uid);
+                $.ajax({
+                    url:'../../teacher/update',
+                    data:{uid:uid},
+                    success:function (msg) {
+                        //alert(msg);
+                    },error:function () {
+                        alert('updateFailed');
+                    }
+                })
+
+
             } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function (index) {
-                    obj.del();
+                    $.ajax({
+                        url:'../../teacher/delete',
+                        data:{ids:tid},
+                        success:function (msg) {
+                            //layer.alert(msg);
+                        },error:function () {
+                            alert('无法删除');
+                        }
+                    })
                     layer.close(index);
+                    history.go(0);
                 });
             }
         });

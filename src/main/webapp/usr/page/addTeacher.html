@@ -160,9 +160,9 @@
             })
 
 
-          $.ajax({
-                url:'../../user/teacher/addTeacher',
-                data:{teacher:teacher},
+            $.ajax({
+                url:'../../teacher/add',
+                data:{teacher1:teacher},
                 success:function (msg) {
                     layer.alert(msg);
                 },
@@ -171,6 +171,7 @@
                 }
 
             })
+
             return false;
         });
 

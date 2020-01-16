@@ -24,12 +24,15 @@
                                 <input type="text" name="username" id="username" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-inline">
+                       <!-- <div class="layui-inline">
                             <label class="layui-form-label">用户角色</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="sex" autocomplete="off" class="layui-input">
+                                <select name="roleid" id="rolelist"  lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+
+                                </select>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="layui-inline">
                             <a class="layui-btn" lay-submit="" id="searchButton" lay-filter="data-search-btn">搜索</a>
@@ -51,7 +54,9 @@
     </div>
 </div>
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script>
+
     function change(){
 
         layer.open({
@@ -137,7 +142,7 @@
         form.on('submit(data-search-btn)', function (data) {
             var result = JSON.stringify(data.field.username);
            var username = result.substring(1,result.length-1);
-
+            var roleid = JSON.stringify(data.field.roleid);
 
             //执行搜索重载
             table.reload('currentTableId', {
@@ -146,8 +151,8 @@
                     curr: 1
                 }
                 , where: {
-                    username:username
-
+                    username:username,
+                    roleid:roleid
                 }
             }, 'data');
 
@@ -301,9 +306,21 @@
     }
 
 </script>
-<script>
+<!--<script>
+    $(function () {
+        alert('sjdf');
 
-</script>
+        $.ajax({
+            url:'../../user/getRoles',
+            data:{ids:strings},
+            success:function (msg) {
+               alert(msg);
+            },error:function () {
+                alert('无法删除');
+            }
+        })
+    })
+</script>-->
 
 </body>
 </html>

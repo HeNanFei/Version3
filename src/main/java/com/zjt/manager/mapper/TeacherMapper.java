@@ -95,4 +95,8 @@ public interface TeacherMapper {
      * @mbggenerated Sat Jan 11 16:19:10 CST 2020
      */
     int updateByPrimaryKey(Teacher record);
+
+    List<Teacher> selectByLimit(Integer page, Integer limit);
+
+    List<Teacher> selectByCriteron(String teachername);
 }

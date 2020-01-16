@@ -315,4 +315,18 @@
       address = #{address,jdbcType=VARCHAR}
     where tid = #{tid,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByLimit" resultType="com.zjt.manager.pojo.Teacher" parameterType="java.lang.Integer">
+    select * from teacher limit #{page},#{limit}
+  </select>
+
+
+  <select id="selectByCriteron" resultType="com.zjt.manager.pojo.Teacher" parameterType="java.lang.String">
+    select * from teacher where
+    <if test="tname != null">
+      tname like CONCAT('%',#{teachername},'%')
+    </if>
+
+  </select>
+
 </mapper>
