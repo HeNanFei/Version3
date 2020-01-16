@@ -6,6 +6,7 @@ import com.zjt.manager.mapper.TeacherMapper;
 import com.zjt.manager.pojo.Teacher;
 import com.zjt.manager.service.TeacherService;
 import com.zjt.manager.util.Bcry;
+import com.zjt.manager.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -95,9 +96,16 @@ public class TeacherController {
             Teacher teacher = new Teacher();
             teacher.setTname(teachername);
             List<Teacher> teachers = teacherService.selectByCriterion(teacher.getTname());
+            for(Teacher user22 : teachers){
+                user22.setType(StringUtil.transform(user22.getType()));
+            }
+
            map.put("data",teachers);
         }else {
             System.out.println("else"+"_____________________________");
+            for(Teacher user222 : list1){
+                user222.setType(StringUtil.transform(user222.getType()));
+            }
             map.put("data", list1);
         }
         return map;

@@ -13,6 +13,7 @@ import com.zjt.manager.service.RoleService;
 import com.zjt.manager.service.UroleService;
 import com.zjt.manager.service.UserService;
 import com.zjt.manager.util.Bcry;
+import com.zjt.manager.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -89,9 +90,19 @@ public class UserController {
            User user = new User();
            user.setUsername(username);
            List<User> users = userService.selectByCriterion(user);
+           for(User user22 : users){
+               user22.setType(StringUtil.transform(user22.getType()));
+           }
+
+
            map.put("data",users);
        }else {
            System.out.println("else"+"_____________________________");
+
+           for(User user222 : list1){
+               user222.setType(StringUtil.transform(user222.getType()));
+           }
+
            map.put("data", list1);
        }
        return map;

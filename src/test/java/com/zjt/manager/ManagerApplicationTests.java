@@ -4,6 +4,7 @@ package com.zjt.manager;
 
 import com.zjt.manager.mapper.TeacherMapper;
 import com.zjt.manager.pojo.Teacher;
+import com.zjt.manager.util.StringUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,5 +39,11 @@ class ManagerApplicationTests {
 		for (Teacher teacher1 : teachers){
 			System.out.println(teacher1);
 		}
+	}
+	@Test
+	public void testsss(){
+		String transform = StringUtil.transform("root");
+		System.out.println("沙拉法兰克卡"+transform);
+
 	}
 }
