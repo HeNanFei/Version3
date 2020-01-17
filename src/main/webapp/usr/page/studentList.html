@@ -19,23 +19,13 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">班级名称</label>
+                            <label class="layui-form-label">学生姓名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="coursename" id="coursename" autocomplete="off" class="layui-input">
+                                <input type="text" name="studentname" id="studentname" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-                        <!-- <div class="layui-inline">
-                             <label class="layui-form-label">用户角色</label>
-                             <div class="layui-input-inline">
-                                 <select name="roleid" id="rolelist"  lay-search="">
-                                     <option value="">直接选择或搜索选择</option>
-
-                                 </select>
-                             </div>
-                         </div>-->
-
                         <div class="layui-inline">
-                            <a class="layui-btn" lay-submit="" id="searchButton" lay-filter="data-search-btn">搜索</a>
+                            <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
                         </div>
                     </div>
                 </form>
@@ -54,16 +44,14 @@
     </div>
 </div>
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script>
-
     function change(){
 
         layer.open({
             type: 2,
             skin: 'layui-layer-rim', //加上边框
             area: ['820px', '740px'], //宽高
-            content: '../../usr/page/updateCours.html',
+            content: '../../usr/page/updateStudent.html',
             end:function () {
                 // alert('窗口关闭');
                 history.go(0);
@@ -115,6 +103,9 @@
 
     }
 
+
+
+
     layui.use(['form', 'table'], function () {
         var $ = layui.jquery,
             form = layui.form,
@@ -122,15 +113,19 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '../../course/list',
+            url: '../../student/list',
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'cid', width: 80, title: 'ID', sort: true},
-                {field: 'cname', width: 300, title: '班级名称'},
-                {field: 'ctname', width: 100, title: '任课教师', sort: true},
-                {field: 'type', width: 150, title: '身份'},
+                {field: 'sid', width: 80, title: 'ID', sort: true},
+                {field: 'sname', width: 100, title: '学生姓名'},
+                {field: 'sgender', width: 150, title: '性别'},
+                {field: 'school', width: 300, title: '所在学校', sort: true},
+                {field: 'grade', width: 150, title: '年级'},
+                {field: 'address', width: 150, title: '住址'},
+                {field: 'pname', width: 150, title: '父母'},
+                {field: 'tel', width: 150, title: '联系方式'},
+                {field: 'cid', width: 150, title: '学习课程'},
                 {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
-
 
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -140,19 +135,20 @@
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field.coursename);
-            var coursename = result.substring(1,result.length-1);
-            var roleid = JSON.stringify(data.field.roleid);
-            alert(coursename+"搜索条件")
+            var result = JSON.stringify(data.field.studentname);
+            var studentname = result.substring(1,result.length-1);
+            // var roleid = JSON.stringify(data.field.roleid);
+            /*layer.alert(studentname, {
+                title: '最终的搜索信息'
+            });*/
+
             //执行搜索重载
             table.reload('currentTableId', {
-
                 page: {
                     curr: 1
                 }
                 , where: {
-                    coursename:coursename
-
+                    studentname:studentname
                 }
             }, 'data');
 
@@ -166,7 +162,7 @@
                 type: 2,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['820px', '740px'], //宽高
-                content: '../../usr/page/addCours.html',
+                content: '../../usr/page/addStudent.html',
                 end:function () {
 
                     history.go(0);
@@ -178,22 +174,22 @@
         $(".data-delete-btn").on("click", function () {
             var checkStatus = table.checkStatus('currentTableId')
                 , data = checkStatus.data;
-            //layer.alert(JSON.stringify(data));
+            layer.alert(JSON.stringify(data));
             var strings = '';
             $.each(data,function (i,item) {
-                strings += item.cid+',';
+                strings += item.sid+',';
             })
-            alert(strings);
             $.ajax({
-                url:'../../course/delete',
+                url:'../../student/delete',
                 data:{ids:strings},
                 success:function (msg) {
-                   alert(msg);
+                    //layer.alert(msg);
                 },error:function () {
                     alert('无法删除');
                 }
             })
             history.go(0);
+
         });
 
         //监听表格复选框选择
@@ -203,13 +199,15 @@
 
         table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
+            var sid = JSON.stringify(data.sid);
+            //alert(sid+"jdjkf");
             if (obj.event === 'edit') {
                 //layer.alert('编辑行：<br>' + JSON.stringify(data))
-
-                var cid = data.cid;
+                var uid = data.sid;
+                //alert(uid);
                 $.ajax({
-                    url:'../../course/update',
-                    data:{uid:cid},
+                    url:'../../student/update',
+                    data:{uid:uid},
                     success:function (msg) {
                         //alert(msg);
                     },error:function () {
@@ -217,97 +215,29 @@
                     }
                 })
 
+
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除么', function (index) {
-                    var data = obj.data;
-                    var cid = data.cid;
-                    obj.del();
-                    //alert(cid);
+                layer.confirm('真的删除行么', function (index) {
                     $.ajax({
-                        url:'../../course/delete',
-                        data:{ids:cid},
+                        url:'../../student/delete',
+                        data:{ids:sid},
                         success:function (msg) {
                             //layer.alert(msg);
                         },error:function () {
                             alert('无法删除');
                         }
                     })
-
-
-
                     layer.close(index);
+                    history.go(0);
                 });
             }
         });
 
     });
-
-    function handleJson(data) {
-        //alert(data.type[1]);
-        alert(JSON.stringify(data.field));
-        var course1 = JSON.stringify(data);
-        $.ajax({
-            url:'../course/realUpdate',
-            data:{course1:course1},
-            success:function (msg) {
-
-
-
-                layui.use('table', function(){
-                    var table = layui.table;
-
-                    //方法级渲染
-                    table.render({
-                        elem: '#LAY_table_course'
-                        ,url: '../../course/list'
-                        ,cols: [[
-                            {type: "checkbox", width: 50, fixed: "left"},
-                            {field: 'cid', width: 80, title: 'ID', sort: true},
-                            {field: 'coursename', width: 100, title: '用户名'},
-                            {field: 'password', width: 300, title: '密码', sort: true},
-                            {field: 'type', width: 150, title: '身份'},
-                            {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
-                        ]]
-                        ,id: 'testReload'
-                        ,page: true
-                        ,height: 310
-                    });
-
-                    var $ = layui.$, active = {
-                        reload: function(){
-                            var demoReload = $('#demoReload');
-
-                            //执行重载
-                            table.reload('testReload', {
-                                page: {
-                                    curr: 1 //重新从第 1 页开始
-                                }
-                                ,where: {
-                                    key: {
-                                        id: demoReload.val()
-                                    }
-                                }
-                            }, 'data');
-                        }
-                    };
-
-                    $('.demoTable .layui-btn').on('click', function(){
-                        var type = $(this).data('type');
-                        active[type] ? active[type].call(this) : '';
-                    });
-                });
-
-
-            },
-            error:function () {
-                alert("权限不足");
-            }
-        })
-
-    }
+</script>
+<script>
 
 </script>
-
 
 </body>
 </html>

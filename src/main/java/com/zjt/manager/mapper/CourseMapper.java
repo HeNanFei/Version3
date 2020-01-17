@@ -95,4 +95,9 @@ public interface CourseMapper {
      * @mbggenerated Sat Jan 11 16:19:10 CST 2020
      */
     int updateByPrimaryKey(Course record);
+
+    List<Course> selectByLimit(Integer page, Integer limit);
+
+    List<Course> selectByCriteron(String cname);
+
 }

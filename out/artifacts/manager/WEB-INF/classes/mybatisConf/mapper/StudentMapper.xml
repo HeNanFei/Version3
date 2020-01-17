@@ -345,4 +345,20 @@
       cid = #{cid,jdbcType=INTEGER}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectByLimit" resultType="com.zjt.manager.pojo.Student" parameterType="java.lang.Integer">
+    select * from student limit #{page},#{limit}
+  </select>
+
+
+  <select id="selectByCriteron" resultType="com.zjt.manager.pojo.Student" parameterType="java.lang.String">
+    select * from student where
+    <if test="tname != null">
+      sname like CONCAT('%',#{sname},'%')
+    </if>
+
+  </select>
+
+
 </mapper>

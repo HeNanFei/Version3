@@ -14,58 +14,74 @@
     <div class="layuimini-main">
 
         <blockquote class="layui-elem-quote layui-text">
-           Nothing is ok
+            Nothing is ok
         </blockquote>
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>添加教师</legend>
+            <legend>添加学生</legend>
         </fieldset>
 
-        <form class="layui-form" action="/manager/user/teacher/listTeacher">
+        <form class="layui-form" action="/manager/user/student/listTeacher">
             <div class="layui-form-item">
-                <label class="layui-form-label">教师姓名</label>
+                <label class="layui-form-label">学生姓名</label>
                 <div class="layui-input-block">
-                    <input type="hidden" name="tid" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="null">
-                    <input type="text" name="tname" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                    <input type="hidden" name="sid" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="null">
+                    <input type="text" name="sname"  id="sname" lay-verify="title" autocomplete="off" placeholder="学生姓名" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">毕业院校</label>
+                <label class="layui-form-label">所在学校</label>
                 <div class="layui-input-block">
-                    <input type="text" name="college" lay-verify="title" autocomplete="off" placeholder="毕业院校" class="layui-input">
+                    <input type="text" name="school" id="school" lay-verify="title" autocomplete="off" placeholder="所在学校" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">性别</label>
                 <div class="layui-input-block">
-                    <input type="radio" name="tgender" value="男" title="男">
-                    <input type="radio" name="tgender" value="女" title="女">
+                    <input type="radio" name="sgender" value="男" id="man"  title="男">
+                    <input type="radio" name="sgender" value="女" id="women" title="女">
                 </div>
             </div>
             <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">联系电话</label>
+                <div class="layui-inline">
+                    <label class="layui-form-label">联系电话</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="tel" id="tel" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年级</label>
                 <div class="layui-input-inline">
-                    <input type="tel" name="tel" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                    <select name="grade" lay-verify="required" lay-search="">
+                        <option value="">年级选择</option>
+                        <option value="一年级">一年级</option>
+                        <option value="二年级">二年级</option>
+                        <option value="三年级">三年级</option>
+                        <option value="四年级">四年级</option>
+                        <option value="五年级">五年级</option>
+                        <option value="六年级">六年级</option>
+                        <option value="初一">初一</option>
+                        <option value="初二">初二</option>
+                        <option value="初三">初三</option>
+                        <option value="高一">高一</option>
+                        <option value="高二">高二</option>
+                        <option value="高三">高三</option>
+                    </select>
                 </div>
-            </div>
+
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">用户身份</label>
-                <div class="layui-input-block">:
-                    <input type="checkbox" name="type" title="超级管理员" value="7">
-                    <input type="checkbox" name="type" title="语文老师" value="1">
-                    <input type="checkbox" name="type" title="数学老师" value="2">
-                    <input type="checkbox" name="type" title="英语老师" value="3">
-                    <input type="checkbox" name="type" title="化学老师" value="4">
-                    <input type="checkbox" name="type" title="物理老师" value="5">
-                    <input type="checkbox" name="type" title="生物老师" value="6">
+                <label class="layui-form-label">父母</label>
+                <div class="layui-input-block">
+                    <input type="text" name="pname" id="pname" lay-verify="title" autocomplete="off" placeholder="父母" class="layui-input">
                 </div>
             </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">住址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="住址" class="layui-input">
+                    <input type="text" name="address" id="address" lay-verify="title" autocomplete="off" placeholder="住址" class="layui-input">
                 </div>
             </div>
 
@@ -154,15 +170,15 @@
             data.field.type = check_val;
 
 
-            var teacher = JSON.stringify(data.field);
+            var student = JSON.stringify(data.field);
             layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             })
 
 
             $.ajax({
-                url:'../../teacher/add',
-                data:{teacher1:teacher},
+                url:'../../student/add',
+                data:{student1:student},
                 success:function (msg) {
                     layer.alert(msg);
                 },

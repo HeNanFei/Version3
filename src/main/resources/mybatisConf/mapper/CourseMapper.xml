@@ -268,4 +268,16 @@
       ctname = #{ctname,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+  <select id="selectByLimit" resultType="com.zjt.manager.pojo.Course" parameterType="java.lang.Integer">
+    select * from course limit #{page},#{limit}
+  </select>
+
+
+  <select id="selectByCriteron" resultType="com.zjt.manager.pojo.Course" parameterType="java.lang.String">
+    select * from course where
+    <if test="cname != null">
+      cname like CONCAT('%',#{cname},'%')
+    </if>
+
+  </select>
 </mapper>
