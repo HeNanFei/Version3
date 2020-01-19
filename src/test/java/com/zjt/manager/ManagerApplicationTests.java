@@ -2,9 +2,15 @@ package com.zjt.manager;
 
 
 
+import com.zjt.manager.mapper.ScoreMapper;
 import com.zjt.manager.mapper.TeacherMapper;
+import com.zjt.manager.pojo.Score;
 import com.zjt.manager.pojo.Teacher;
+import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.search.SearchCriteron;
 import com.zjt.manager.service.CourseService;
+import com.zjt.manager.service.ScoreService;
+import com.zjt.manager.util.DateUtil;
 import com.zjt.manager.util.StringUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +18,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
 class ManagerApplicationTests {
 	@Autowired
+	private ScoreMapper scoreMapper;
+	@Autowired
 	private TeacherMapper teacherMapper;
 	@Autowired
 	private CourseService courseService;
+	@Autowired
+	private ScoreService scoreService;
 	@Test
 	void contextLoads() {
 
@@ -49,5 +60,18 @@ class ManagerApplicationTests {
 		for(Teacher teacher : su){
 			System.out.println("su"+"___________"+teacher);
 		}
+	}
+	@Test
+	public void test333(){
+		SearchCriteron searchCriteron = new SearchCriteron();
+		searchCriteron.setLimit(10);
+		searchCriteron.setPage(0);
+		searchCriteron.setProjectName("语文");
+		List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
+		for(ScoreResult score:chinese){
+			System.out.println("fuck"+"_____________________________"+score+chinese.size());
+
+		}
+
 	}
 }

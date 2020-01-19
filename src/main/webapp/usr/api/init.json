@@ -127,14 +127,51 @@
           "target": "_self",
           "child": [
             {
-              "title": "学生列表",
-              "href": "../usr/page/studentList.html",
+              "title": "成绩列表",
+              "href": "../usr/page/scoreList.html",
               "icon": "fa fa-list-alt",
               "target": "_self"
             },
             {
               "title": "成绩录入",
               "href": "../usr/page/scores.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            }
+          ,
+            {
+              "title": "语文",
+              "href": "../usr/page/chineseList.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "数学",
+              "href": "../usr/page/mathList.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "英语",
+              "href": "../usr/page/englishList.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "生物",
+              "href": "../usr/page/biologyList.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "化学",
+              "href": "../usr/page/chemistryList.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "物理",
+              "href": "../usr/page/physicsList.html",
               "icon": "fa fa-navicon",
               "target": "_self"
             }

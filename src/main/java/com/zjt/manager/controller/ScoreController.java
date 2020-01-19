@@ -6,6 +6,8 @@ import com.zjt.manager.pojo.Course;
 import com.zjt.manager.pojo.Score;
 import com.zjt.manager.pojo.Student;
 import com.zjt.manager.pojo.Teacher;
+import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.search.SearchCriteron;
 import com.zjt.manager.service.CourseService;
 import com.zjt.manager.service.ScoreService;
 import com.zjt.manager.service.StudentService;
@@ -54,12 +56,12 @@ public class ScoreController {
     @RequestMapping("/score/list")
     public Map list(Integer page,Integer limit,String scorename){
         List<Score> list1 = scoreMapper.selectByLimit((page-1)*limit, limit-1);
-        //List<Score> list = scoreService.list();
+        List<Score> list = scoreService.list();
 
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
         map.put("msg","");
-        map.put("count",list1.size());
+        map.put("count",list.size());
         if(scorename != null){
             System.out.println(scorename+"______________________"+scorename);
             Score score = new Score();
@@ -148,6 +150,154 @@ public class ScoreController {
         map.put("courses",list);
         return map;
     }
+    @ResponseBody
+    @RequestMapping("/score/list/chinese")
+    public Map listChinese(SearchCriteron searchCriteron){
+
+        SearchCriteron search = new SearchCriteron();
+
+        search.setProjectName("语文");
+
+        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        search.setLimit(searchCriteron.getLimit()-1);
+        System.out.println("条件搜索"+search);
 
 
+        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+        for(int i=0;i<chinese.size();i++){
+
+
+        }
+
+        System.out.println(chinese.size()+"____________________");
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("msg","");
+
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        map.put("count",allScoreReults.size());
+        map.put("data",chinese);
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/score/list/math")
+    public Map listMath(SearchCriteron searchCriteron){
+
+        SearchCriteron search = new SearchCriteron();
+
+        search.setProjectName("数学");
+        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        search.setLimit(searchCriteron.getLimit()-1);
+        System.out.println("条件搜索"+search);
+
+
+        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+
+
+        System.out.println(chinese.size()+"____________________");
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("msg","");
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        map.put("count",allScoreReults.size());
+        map.put("data",chinese);
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping("/score/list/english")
+    public Map listEnglish(SearchCriteron searchCriteron){
+
+        SearchCriteron search = new SearchCriteron();
+
+        search.setProjectName("英语");
+        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        search.setLimit(searchCriteron.getLimit()-1);
+        System.out.println("条件搜索"+search);
+
+
+        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+
+
+        System.out.println(chinese.size()+"____________________");
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("msg","");
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        map.put("count",allScoreReults.size());
+        map.put("data",chinese);
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping("/score/list/physics")
+    public Map physics(SearchCriteron searchCriteron){
+
+        SearchCriteron search = new SearchCriteron();
+
+        search.setProjectName("物理");
+        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        search.setLimit(searchCriteron.getLimit()-1);
+        System.out.println("条件搜索"+search);
+
+
+        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+
+
+        System.out.println(chinese.size()+"____________________");
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("msg","");
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        map.put("count",allScoreReults.size());
+        map.put("data",chinese);
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping("/score/list/chemistry")
+    public Map chemistry(SearchCriteron searchCriteron){
+
+        SearchCriteron search = new SearchCriteron();
+
+        search.setProjectName("化学");
+        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        search.setLimit(searchCriteron.getLimit()-1);
+        System.out.println("条件搜索"+search);
+
+
+        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+
+
+        System.out.println(chinese.size()+"____________________");
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("msg","");
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        map.put("count",allScoreReults.size());
+        map.put("data",chinese);
+        return map;
+    }
+    @ResponseBody
+    @RequestMapping("/score/list/biology")
+    public Map bology(SearchCriteron searchCriteron){
+
+        SearchCriteron search = new SearchCriteron();
+
+        search.setProjectName("生物");
+        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        search.setLimit(searchCriteron.getLimit()-1);
+        System.out.println("条件搜索"+search);
+
+
+        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+
+
+        System.out.println(chinese.size()+"____________________");
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("msg","");
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        map.put("count",allScoreReults.size());
+        map.put("data",chinese);
+        return map;
+    }
 }

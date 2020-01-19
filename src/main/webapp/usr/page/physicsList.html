@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <fieldset class="layui-elem-field layuimini-search">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">学生姓名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="scorename" id="scorename" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <div class="layui-btn-group">
+            <button class="layui-btn data-add-btn">添加</button>
+            <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
+        </div>
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit" onclick="change()">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+    </div>
+</div>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    function change(){
+
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['820px', '740px'], //宽高
+            content: '../../usr/page/physics.html',
+            end:function () {
+                // alert('窗口关闭');
+                history.go(0);
+            }
+        });
+
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+            //创建一个编辑器
+            var editIndex = layedit.build('LAY_demo_editor');
+
+            //自定义验证规则
+            form.verify({
+                title: function (value) {
+
+                }
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+                , content: function (value) {
+                    layedit.sync(editIndex);
+                }
+            });
+
+
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+
+
+                handleJson(data);
+                return false;
+            });
+
+        });
+
+    }
+
+
+
+
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '../../score/list/physics',
+            cols: [[
+                {type: "checkbox", width: 50, fixed: "left"},
+                {field: 'scoreid', width: 80, title: 'ID', sort: true},
+                {field: 'sname', width: 100, title: '学生姓名'},
+                {field: 'score', width: 150, title: '分数'},
+                {field: 'lname', width: 300, title: '考试', sort: true},
+                {field: 'cdate', width: 350, title: '日期'},
+                {field: 'cname', width: 350, title: '所在班级'},
+                {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 15,
+            page: true
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var result = JSON.stringify(data.field.scorename);
+            var scorename = result.substring(1,result.length-1);
+            // var roleid = JSON.stringify(data.field.roleid);
+            /*layer.alert(scorename, {
+                title: '最终的搜索信息'
+            });*/
+
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    scorename:scorename
+                }
+            }, 'data');
+
+            return false;
+        });
+
+        // 监听添加操作
+        $(".data-add-btn").on("click", function () {
+            layer.msg('添加数据');
+            layer.open({
+                type: 2,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['820px', '740px'], //宽高
+                content: '../../usr/page/scores.html',
+                end:function () {
+
+                    history.go(0);
+                }
+            });
+        });
+
+        // 监听删除操作
+        $(".data-delete-btn").on("click", function () {
+            var checkStatus = table.checkStatus('currentTableId')
+                , data = checkStatus.data;
+            //layer.alert(JSON.stringify(data));
+            var strings = '';
+            $.each(data,function (i,item) {
+                strings += item.scoreid+',';
+                alert(strings);
+
+            })
+            $.ajax({
+                url:'../../score/delete',
+                data:{ids:strings},
+                success:function (msg) {
+                    //layer.alert(msg);
+                },error:function () {
+                    alert('无法删除');
+                }
+            })
+            history.go(0);
+
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function (obj) {
+            var data = obj.data;
+            var scoreid = JSON.stringify(data.scoreid);
+            //alert(scoreid+"jdjkf");
+            if (obj.event === 'edit') {
+                //layer.alert('编辑行：<br>' + JSON.stringify(data))
+                var uid = data.scoreid;
+                //alert(uid);
+                $.ajax({
+                    url:'../../score/update',
+                    data:{uid:uid},
+                    success:function (msg) {
+                        //alert(msg);
+                    },error:function () {
+                        alert('updateFailed');
+                    }
+                })
+
+
+            } else if (obj.event === 'delete') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.ajax({
+                        url:'../../score/delete',
+                        data:{ids:scoreid},
+                        success:function (msg) {
+                            //layer.alert(msg);
+                        },error:function () {
+                            alert('无法删除');
+                        }
+                    })
+                    layer.close(index);
+                    history.go(0);
+                });
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

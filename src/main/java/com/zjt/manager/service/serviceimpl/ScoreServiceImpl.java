@@ -3,6 +3,8 @@ package com.zjt.manager.service.serviceimpl;
 import com.zjt.manager.mapper.ScoreMapper;
 import com.zjt.manager.pojo.Score;
 import com.zjt.manager.pojo.ScoreExample;
+import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.search.SearchCriteron;
 import com.zjt.manager.service.ScoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +31,7 @@ public class ScoreServiceImpl implements ScoreService {
 
         ScoreExample.Criteria criteria = scoreExample.createCriteria();
 
-        criteria.andSidIsNotNull();
+        criteria.andScoreidIsNotNull();
 
         return scoreMapper.selectByExample(scoreExample);
     }
@@ -49,7 +51,7 @@ public class ScoreServiceImpl implements ScoreService {
 
         ScoreExample scoreExample = new ScoreExample();
         ScoreExample.Criteria criteria = scoreExample.createCriteria();
-        criteria.andSidIn(uids);
+        criteria.andScoreidIn(uids);
         return scoreMapper.selectByExample(scoreExample);
     }
 
@@ -57,7 +59,7 @@ public class ScoreServiceImpl implements ScoreService {
     public Score getById(Integer id) {
         ScoreExample scoreExample = new ScoreExample();
         ScoreExample.Criteria criteria = scoreExample.createCriteria();
-        criteria.andSidEqualTo(id);
+        criteria.andScoreidEqualTo(id);
         return scoreMapper.selectByExample(scoreExample).get(0);
     }
 
@@ -66,7 +68,7 @@ public class ScoreServiceImpl implements ScoreService {
 
         ScoreExample scoreExample = new ScoreExample();
         ScoreExample.Criteria criteria = scoreExample.createCriteria();
-        criteria.andSidEqualTo(score.getSid());
+        criteria.andScoreidEqualTo(score.getScoreid());
         scoreMapper.updateByExampleSelective(score,scoreExample);
     }
 
@@ -75,7 +77,7 @@ public class ScoreServiceImpl implements ScoreService {
 
         ScoreExample scoreExample = new ScoreExample();
         ScoreExample.Criteria criteria = scoreExample.createCriteria();
-        criteria.andSidIn(uids);
+        criteria.andScoreidIn(uids);
         scoreMapper.deleteByExample(scoreExample);
     }
 
@@ -90,9 +92,17 @@ public class ScoreServiceImpl implements ScoreService {
     public Score selectScoreById(Integer uid) {
         ScoreExample scoreExample = new ScoreExample();
         ScoreExample.Criteria criteria = scoreExample.createCriteria();
-        criteria.andSidEqualTo(uid);
+        criteria.andScoreidEqualTo(uid);
 
         return scoreMapper.selectByExample(scoreExample).get(0);
+    }
+
+    @Override
+    public List<ScoreResult> getAllScoreReults(SearchCriteron searchCriteron) {
+
+
+
+        return  scoreMapper.selectAllByProject(searchCriteron);
     }
 
 }

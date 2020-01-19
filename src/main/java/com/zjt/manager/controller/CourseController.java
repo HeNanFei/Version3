@@ -65,12 +65,12 @@ public class CourseController {
     @RequestMapping("/course/list")
     public Map list(Integer page,Integer limit,String coursename){
         List<Course> list1 = courseMapper.selectByLimit((page-1)*limit, limit-1);
-        //List<Course> list = courseService.list();
+        List<Course> list = courseService.list();
 
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
         map.put("msg","");
-        map.put("count",list1.size());
+        map.put("count",list.size());
         if(coursename != null){
             System.out.println(coursename+"______________________"+coursename);
             Course course = new Course();

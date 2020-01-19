@@ -40,12 +40,12 @@ public class StudentController {
     @RequestMapping("/student/list")
     public Map list(Integer page,Integer limit,String studentname){
         List<Student> list1 = studentMapper.selectByLimit((page-1)*limit, limit-1);
-        //List<Student> list = studentService.list();
+        List<Student> list = studentService.list();
 
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
         map.put("msg","");
-        map.put("count",list1.size());
+        map.put("count",list.size());
         if(studentname != null){
             System.out.println(studentname+"______________________"+studentname);
             Student student = new Student();

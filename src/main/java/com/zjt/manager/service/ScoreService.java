@@ -1,6 +1,8 @@
 package com.zjt.manager.service;
 
 import com.zjt.manager.pojo.Score;
+import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.search.SearchCriteron;
 
 import java.util.List;
 
@@ -22,4 +24,6 @@ public interface ScoreService {
     List<Score> selectByCriterion(String sname);
 
     Score selectScoreById(Integer uid);
+
+    List<ScoreResult> getAllScoreReults(SearchCriteron searchCriteron);
 }

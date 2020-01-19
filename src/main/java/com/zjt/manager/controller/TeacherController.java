@@ -85,12 +85,12 @@ public class TeacherController {
     @RequestMapping("/teacher/list")
     public Map list(Integer page,Integer limit,String teachername){
         List<Teacher> list1 = teacherMapper.selectByLimit((page-1)*limit, limit-1);
-        //List<Teacher> list = teacherService.list();
+        List<Teacher> list = teacherService.list();
 
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
         map.put("msg","");
-        map.put("count",list1.size());
+        map.put("count",list.size());
         if(teachername != null){
             System.out.println(teachername+"______________________"+teachername);
             Teacher teacher = new Teacher();
