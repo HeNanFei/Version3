@@ -100,4 +100,6 @@ public interface StudentMapper {
 
     List<Student> selectByCriteron(String sname);
 
+
+
 }

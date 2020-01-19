@@ -70,7 +70,6 @@ public interface UserMapper {
 
     List<User> selectUserAndRoles();
 
-
     List<User> selectByCriteron(User user);
 	
 }

@@ -25,7 +25,7 @@
 
         <!-- targetProject:生成PO类的位置 -->
         <javaModelGenerator targetPackage="com.zjt.manager.pojo"
-                            targetProject="C:\Users\Administrator\Desktop\tempFile">
+                            targetProject="C:\Users\Administrator\Desktop">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -33,12 +33,12 @@
         </javaModelGenerator>
         <!-- targetPackage:mapper映射文件生成的位置 -->
         <sqlMapGenerator targetPackage="com.zjt.manager.mapper"
-                         targetProject="C:\Users\Administrator\Desktop\tempFile">
+                         targetProject="C:\Users\Administrator\Desktop">
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口的生成位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.zjt.manager.mapper" targetProject="C:\Users\Administrator\Desktop\tempFile">
+                             targetPackage="com.zjt.manager.mapper" targetProject="C:\Users\Administrator\Desktop">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
@@ -48,7 +48,7 @@
         <!-- 系统用户 这里不指定schema，逆向工程会查询sysuser都有哪些schema，对每个schema生成对象 -->
 
         <table schema="root" tableName="score" />
-        <table schema="root" tableName="authority" />
+       <!-- <table schema="root" tableName="authority" />
         <table schema="root" tableName="role" />
         <table schema="root" tableName="roleau" />
         <table schema="root" tableName="student" />
@@ -56,10 +56,7 @@
         <table schema="root" tableName="term" />
         <table schema="root" tableName="urole" />
         <table schema="root" tableName="course" />
-        <table schema="root" tableName="user" />
-
-
-
+        <table schema="root" tableName="user" />-->
 
 
 

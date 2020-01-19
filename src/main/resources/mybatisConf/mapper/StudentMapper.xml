@@ -354,10 +354,9 @@
 
   <select id="selectByCriteron" resultType="com.zjt.manager.pojo.Student" parameterType="java.lang.String">
     select * from student where
-    <if test="tname != null">
+    <if test="sname != null">
       sname like CONCAT('%',#{sname},'%')
     </if>
-
   </select>
 
 
