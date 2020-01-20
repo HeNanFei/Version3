@@ -300,4 +300,12 @@ public class ScoreController {
         map.put("data",chinese);
         return map;
     }
+
+ /*   @ResponseBody
+    @RequestMapping("/score/scoreTest")
+    public Map screTest(){
+
+
+    }
+*/
 }

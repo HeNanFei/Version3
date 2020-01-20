@@ -5,6 +5,7 @@ import com.zjt.manager.pojo.result.ScoreResult;
 import com.zjt.manager.pojo.search.SearchCriteron;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ScoreService {
     void insertScore(Score score);
@@ -26,4 +27,7 @@ public interface ScoreService {
     Score selectScoreById(Integer uid);
 
     List<ScoreResult> getAllScoreReults(SearchCriteron searchCriteron);
+
+    Map getEchartsData();
+
 }
