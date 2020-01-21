@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ScoreServiceImpl implements ScoreService {
@@ -260,8 +257,59 @@ public class ScoreServiceImpl implements ScoreService {
 
             totalProjects++;
         }
-
-
+        //最佳科目和最low科目
+        List<Integer> balanceScores = new ArrayList<>();
+        balanceScores.add(getBalance(chinese));
+        balanceScores.add(getBalance(math));
+        balanceScores.add(getBalance(english));
+        balanceScores.add(getBalance(physics));
+        balanceScores.add(getBalance(chemistry));
+        balanceScores.add(getBalance(biology));
+        //最高平均分
+        Integer max = Collections.max(balanceScores);
+        //最低平均分
+        Integer min = Collections.min(balanceScores);
+        //最佳科目
+        String bestProject = null;
+        String poorProject = null;
+        for (int i=0;i<balanceScores.size();i++){
+            if ( balanceScores.get(i).equals(max)){
+                if(i==0){
+                    bestProject = "语文";
+                }
+                if(i==1){
+                    bestProject = "数学";
+                }
+                if(i==2){
+                    bestProject = "英语";
+                }
+                if(i==3){
+                    bestProject = "物理";
+                } if(i==4){
+                    bestProject = "化学";
+                } if(i==5){
+                    bestProject = "生物";
+                }
+            }
+            if ( balanceScores.get(i).equals(min)){
+                if(i==0){
+                    poorProject = "语文";
+                }
+                if(i==1){
+                    poorProject = "数学";
+                }
+                if(i==2){
+                    poorProject = "英语";
+                }
+                if(i==3){
+                    poorProject = "物理";
+                } if(i==4){
+                    poorProject = "化学";
+                } if(i==5){
+                    poorProject = "生物";
+                }
+            }
+        }
 
         Map timesMap = new HashMap();
         timesMap.put("chineseTimes",chineseTimes);
@@ -271,8 +319,10 @@ public class ScoreServiceImpl implements ScoreService {
         timesMap.put("chemistryTimes",chemistryTimes);
         timesMap.put("biologyTimes",biologyTimes);
 
-
-
+        map.put("max",max);
+        map.put("min",min);
+        map.put("bestProject",bestProject);
+        map.put("poorProject",poorProject);
         map.put("lnames",lnames);
         map.put("chinese",chinese);
         map.put("math",math);
@@ -292,6 +342,23 @@ public class ScoreServiceImpl implements ScoreService {
         map.put("onGoing",onGoing);
         map.put("totalProjects",totalProjects);
         return map;
+    }
+
+
+    //平均数
+    public static int getBalance(List<Integer> list){
+        int temp = 0;
+        int total = 0;
+        for (int i=0;i<list.size();i++){
+            temp = list.get(i);
+            total+=temp;
+        }
+        if(total == 0){
+            return 0;
+        }else{
+            return total/list.size();
+        }
+
     }
 
 }

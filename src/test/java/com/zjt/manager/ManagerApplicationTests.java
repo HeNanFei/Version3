@@ -87,4 +87,26 @@ class ManagerApplicationTests {
 
 
 	}
+	@Test
+	public void test111(){
+
+
+		List<Integer> list = new ArrayList<>();
+		list.add(44);
+		list.add(44);
+		list.add(44);
+		list.add(44);list.add(44);
+		list.add(44);
+		int temp = 0;
+		int total = 0;
+		for (int i=0;i<list.size();i++){
+			temp = list.get(i);
+			total+=temp;
+		}
+		System.out.println("slkkjdf________"+total/list.size());
+
+
+
+
+	}
 }
