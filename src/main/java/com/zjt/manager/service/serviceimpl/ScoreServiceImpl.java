@@ -6,11 +6,13 @@ import com.zjt.manager.pojo.ScoreExample;
 import com.zjt.manager.pojo.result.ScoreResult;
 import com.zjt.manager.pojo.search.SearchCriteron;
 import com.zjt.manager.service.ScoreService;
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,12 +110,153 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public Map getEchartsData() {
+    public Map<String,List> getEchartsData(SearchCriteron searchCriteron) {
 
         Map map = new HashMap();
+        List<ScoreResult> singleProject = scoreMapper.getSingleProject(searchCriteron);
+        List<String> lnames = new ArrayList<>();
+        List<Integer> chinese = new ArrayList<>();
+        List<Integer> math = new ArrayList<>();
+        List<Integer> english = new ArrayList<>();
+        List<Integer> physics = new ArrayList<>();
+        List<Integer> chemistry = new ArrayList<>();
+        List<Integer> biology = new ArrayList<>();
 
 
-        return null;
+
+        for(ScoreResult scoreResult :singleProject){
+            lnames.add(scoreResult.getLname());
+            chinese.add(scoreResult.getScore());
+        }
+
+        map.put("lnames",lnames);
+        return map;
+    }
+
+    @Override
+    public Map getAllScoresInfor(SearchCriteron searchCriteron) {
+
+
+        Map map = new HashMap();
+        List<ScoreResult> allScoresInfor = scoreMapper.getAllScoresInfor(searchCriteron);
+        List<String> lnames = new ArrayList<>();
+        List<String> chinames = new ArrayList<>();
+        List<String> matnames = new ArrayList<>();
+        List<String> phynames = new ArrayList<>();
+        List<String> chenames = new ArrayList<>();
+        List<String> bionames = new ArrayList<>();
+        List<String> englnames = new ArrayList<>();
+        List<Integer> chinese = new ArrayList<>();
+        List<Integer> math = new ArrayList<>();
+        List<Integer> english = new ArrayList<>();
+        List<Integer> physics = new ArrayList<>();
+        List<Integer> chemistry = new ArrayList<>();
+        List<Integer> biology = new ArrayList<>();
+
+        List<String> elnames = new ArrayList<>();
+
+        //考试次数
+
+
+
+        SearchCriteron temp = new SearchCriteron();
+        temp.setCname("语文");
+        temp.setSname(searchCriteron.getSname());
+        List<ScoreResult> chineseResult = scoreMapper.getSingleProject(temp);
+        for (ScoreResult scoreResult:chineseResult){
+            chinames.add(scoreResult.getLname());
+        }
+
+        SearchCriteron mathLnames = new SearchCriteron();
+        mathLnames.setCname("数学");
+        mathLnames.setSname(searchCriteron.getSname());
+        List<ScoreResult> mathResult = scoreMapper.getSingleProject(mathLnames);
+        for (ScoreResult scoreResult:mathResult){
+            matnames.add(scoreResult.getLname());
+        }
+
+        SearchCriteron englishLnames = new SearchCriteron();
+        englishLnames.setCname("英语");
+        englishLnames.setSname(searchCriteron.getSname());
+        List<ScoreResult> englishResult = scoreMapper.getSingleProject(englishLnames);
+        for (ScoreResult scoreResult:englishResult){
+            System.out.println(scoreResult.getLname());
+            englnames.add(scoreResult.getLname());
+        }
+
+        SearchCriteron physicsLnames = new SearchCriteron();
+        physicsLnames.setCname("物理");
+        physicsLnames.setSname(searchCriteron.getSname());
+        List<ScoreResult> physicsResult = scoreMapper.getSingleProject(physicsLnames);
+        for (ScoreResult scoreResult:physicsResult){
+            phynames.add(scoreResult.getLname());
+        }
+
+        SearchCriteron biologyNames = new SearchCriteron();
+        biologyNames.setCname("生物");
+        biologyNames.setSname(searchCriteron.getSname());
+        List<ScoreResult> biologyResult = scoreMapper.getSingleProject(biologyNames);
+        for (ScoreResult scoreResult:biologyResult){
+            bionames.add(scoreResult.getLname());
+        }
+
+        SearchCriteron chemistryLnames = new SearchCriteron();
+        chemistryLnames.setCname("化学");
+        chemistryLnames.setSname(searchCriteron.getSname());
+        List<ScoreResult> chemistryResult = scoreMapper.getSingleProject(chemistryLnames);
+        for (ScoreResult scoreResult:chemistryResult){
+            chenames.add(scoreResult.getLname());
+        }
+
+        for(int i=0;i<allScoresInfor.size();i++){
+          if(allScoresInfor.get(i).getCname().contains("语文")){
+              chinese.add(allScoresInfor.get(i).getScore());
+            }else if(allScoresInfor.get(i).getCname().contains("数学")){
+              math.add(allScoresInfor.get(i).getScore());
+          }else if(allScoresInfor.get(i).getCname().contains("英语")){
+              english.add(allScoresInfor.get(i).getScore());
+          }else if(allScoresInfor.get(i).getCname().contains("物理")){
+              physics.add(allScoresInfor.get(i).getScore());
+          }else if(allScoresInfor.get(i).getCname().contains("化学")){
+              chemistry.add(allScoresInfor.get(i).getScore());
+          }else if(allScoresInfor.get(i).getCname().contains("生物")){
+              biology.add(allScoresInfor.get(i).getScore());
+          }
+
+        }
+        Integer chineseTimes = chineseResult.size();
+        Integer mathTimes = mathResult.size();
+        Integer englishTimes = englishResult.size();
+        Integer physicsTimes = physicsResult.size();
+        Integer chemistryTimes = chemistryResult.size();
+        Integer biologyTimes = biologyResult.size();
+
+        Map timesMap = new HashMap();
+        timesMap.put("chineseTimes",chineseTimes);
+        timesMap.put("mathTimes",mathTimes);
+        timesMap.put("englishTimes",englishTimes);
+        timesMap.put("physicsTimes",physicsTimes);
+        timesMap.put("chemistryTimes",chemistryTimes);
+        timesMap.put("biologyTimes",biologyTimes);
+
+
+
+        map.put("lnames",lnames);
+        map.put("chinese",chinese);
+        map.put("math",math);
+        map.put("english",english);
+        map.put("physics",physics);
+        map.put("chemistry",chemistry);
+        map.put("biology",biology);
+
+        map.put("chinames",chinames);
+        map.put("matnames",matnames);
+        map.put("englnames",englnames);
+        map.put("phynames",phynames);
+        map.put("chenames",chenames);
+        map.put("bionames",bionames);
+        map.put("timesMap",timesMap);
+        return map;
     }
 
 }

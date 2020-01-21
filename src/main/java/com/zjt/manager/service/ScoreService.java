@@ -28,6 +28,9 @@ public interface ScoreService {
 
     List<ScoreResult> getAllScoreReults(SearchCriteron searchCriteron);
 
-    Map getEchartsData();
+    Map getEchartsData(SearchCriteron searchCriteron);
+
+
+    Map getAllScoresInfor(SearchCriteron searchCriteron);
 
 }

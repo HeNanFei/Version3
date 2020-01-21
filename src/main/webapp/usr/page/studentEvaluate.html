@@ -113,19 +113,64 @@
             <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
         </div>
         <div class="layui-col-xs12 layui-col-md3">
-            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+            <div id="englishEvaluate" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md9">
+            <div id="math" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+            <div id="mathEvaluate" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
         </div>
     </div>
 
 
     <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md9">
+            <div id="chinese" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+            <div id="chineseEvaluate" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md9">
+            <div id="physics" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+            <div id="physicsEvaluate" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md9">
+            <div id="chemistry" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+            <div id="chemistryEvaluate" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md9">
+            <div id="biology" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+            <div id="biologyEvaluate" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+    <!--<div class="layui-row layui-col-space15">
         <div class="layui-col-xs12 layui-col-md6">
             <div id="echarts-dataset" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
         </div>
         <div class="layui-col-xs12 layui-col-md6">
             <div id="echarts-map" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
         </div>
-    </div>
+    </div>-->
 
 
 </div>
@@ -134,9 +179,54 @@
 <script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script src="../lib/js/jquery-3.4.1.min.js"></script>
 <script>
-    var studentInfor;
+    //科目最佳
+    var scoreData;
+    var maxChinese;
+    var maxEnglish;
+    var maxMath;
+    var maxPhysics;
+    var maxChemistry;
+    var maxBiology;
+
+    //考试次数
+  /*  var chiTimes;
+    var matTimes;
+    var engTimes;
+    var phyTimes;
+    var cheTimes;
+    var bioTimes;*/
+    //各科成绩
+
+
     $(function () {
-        alert('studentInfor');
+
+
+        $.ajax({
+            url:'../../score/scoreTest',
+            success:function (msg) {
+
+                scoreData = msg;
+
+
+                maxEnglish = Math.max.apply(null, msg.english);
+                maxMath = Math.max.apply(null, msg.math);
+                maxChinese = Math.max.apply(null, msg.chinese);
+                maxPhysics = Math.max.apply(null, msg.physics);
+                maxChemistry = Math.max.apply(null, msg.chemistry);
+                maxBiology = Math.max.apply(null, msg.biology);
+
+                $('#englishEvaluate').append('<h2>您的英语一共考过'+msg.timesMap.englishTimes+'次，最佳成绩为'+getNumber(maxEnglish)+'分，再接再厉！</h2>');
+                $('#mathEvaluate').append('<h2>您的数学一共考过'+msg.timesMap.mathTimes+'次，最佳成绩为'+getNumber(maxMath)+'分，再接再厉！</h2>');
+                $('#chineseEvaluate').append('<h2>您的语文一共考过'+msg.timesMap.chineseTimes+'次，最佳成绩为'+getNumber(maxChinese)+'分，再接再厉！</h2>');
+                $('#biologyEvaluate').append('<h2>您的生物一共考过'+msg.timesMap.biologyTimes+'次，最佳成绩为'+getNumber(maxBiology)+'分，再接再厉！</h2>');
+                $('#chemistryEvaluate').append('<h2>您的化学一共考过'+msg.timesMap.chemistryTimes+'次，最佳成绩为'+getNumber(maxChemistry)+'分，再接再厉！</h2>');
+               $('#physicsEvaluate').append('<h2>您的物理一共考过'+msg.timesMap.physicsTimes+'次，最佳成绩为'+getNumber(maxPhysics)+'分，再接再厉！</h2>');
+            },
+            error:function () {
+                alert('无法查询');
+            }
+        })
+
         layui.use(['layer', 'echarts'], function () {
             var $ = layui.jquery,
                 layer = layui.layer,
@@ -147,88 +237,6 @@
              */
             var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
 
-            /* var optionRecords = {
-                 title: {
-                     text: '指标名称-报表图'
-                 },
-                 tooltip: {
-                     trigger: 'axis',
-                     axisPointer: {
-                         type: 'cross',
-                         label: {
-                             backgroundColor: '#6a7985'
-                         }
-                     }
-                 },
-                 legend: {
-                     data: ['数学', '英语', '语文', '物理', '化学']
-                 },
-                 toolbox: {
-                     feature: {
-                         saveAsImage: {}
-                     }
-                 },
-                 grid: {
-                     left: '3%',
-                     right: '4%',
-                     bottom: '3%',
-                     containLabel: true
-                 },
-                 xAxis: [
-                     {
-                         type: 'category',
-                         boundaryGap: false,
-                         data: ['第一次月考', '第二次月考', '第三次月考', '第四次月考', '第五次月考', '第六次月考', '第七次月考']
-                     }
-                 ],
-                 yAxis: [
-                     {
-                         type: 'value'
-                     }
-                 ],
-                 series: [
-                     {
-                         name: '数学',
-                         type: 'line',
-                         stack: '总量',
-                         areaStyle: {},
-                         data: [30, 35, 40, 45, 90, 20, 60]
-                     },
-                     {
-                         name: '英语',
-                         type: 'line',
-                         areaStyle: {},
-                         data: [79, 29, 50, 45, 90, 100, 30]
-                     },
-                     {
-                         name: '语文',
-                         type: 'line',
-                         stack: '总量',
-                         areaStyle: {},
-                         data: [88, 85, 90, 85, 70, 100, 100]
-                     },
-                     {
-                         name: '物理',
-                         type: 'line',
-                         stack: '总量',
-                         areaStyle: {},
-                         data: [80, 65, 90, 45, 90, 60, 60]
-                     },
-                     {
-                         name: '化学',
-                         type: 'line',
-                         stack: '总量',
-                         label: {
-                             normal: {
-                                 show: true,
-                                 position: 'top'
-                             }
-                         },
-                         areaStyle: {},
-                         data: [70, 95, 50, 75, 70, 90, 100]
-                     }
-                 ]
-             };*/
             var optionRecords = {
                 title: {
                     text: '指标名称-报表图'
@@ -243,7 +251,7 @@
                     }
                 },
                 legend: {
-                    data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                    data: ['英语']
                 },
                 toolbox: {
                     feature: {
@@ -260,7 +268,7 @@
                     {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                        data: scoreData.englnames
                     }
                 ],
                 yAxis: [
@@ -270,48 +278,320 @@
                 ],
                 series: [
                     {
-                        name: '邮件营销',
+                        name: '英语',
                         type: 'line',
                         stack: '总量',
                         areaStyle: {},
-                        data: [120, 132, 101, 134, 90, 230, 210]
+                        data: scoreData.english
                     },
-                    {
-                        name: '联盟广告',
-                        type: 'line',
-                        areaStyle: {},
-                        data: [220, 182, 191, 234, 290, 330, 310]
-                    },
-                    {
-                        name: '视频广告',
-                        type: 'line',
-                        stack: '总量',
-                        areaStyle: {},
-                        data: [150, 232, 201, 154, 190, 330, 410]
-                    },
-                    {
-                        name: '直接访问',
-                        type: 'line',
-                        stack: '总量',
-                        areaStyle: {},
-                        data: [320, 332, 301, 334, 390, 330, 320]
-                    },
-                    {
-                        name: '搜索引擎',
-                        type: 'line',
-                        stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'top'
-                            }
-                        },
-                        areaStyle: {},
-                        data: [820, 932, 901, 934, 1290, 1330, 1320]
-                    }
+
                 ]
             };
             echartsRecords.setOption(optionRecords);
+
+
+            var echartsRecords = echarts.init(document.getElementById('math'), 'walden');
+
+            var math = {
+                title: {
+                    text: '指标名称-报表图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: 'green'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['数学']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: scoreData.matnames
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '数学',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: scoreData.math
+                    },
+
+                ]
+            };
+            echartsRecords.setOption(math);
+
+
+
+
+
+            var echartsRecords = echarts.init(document.getElementById('chinese'), 'walden');
+
+            var chinese = {
+                title: {
+                    text: '指标名称-报表图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: 'green'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['语文']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: scoreData.chenames
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '语文',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: scoreData.chinese
+                    },
+
+                ]
+            };
+            echartsRecords.setOption(chinese);
+
+
+
+            var echartsRecords = echarts.init(document.getElementById('biology'), 'walden');
+
+            var biology = {
+                title: {
+                    text: '指标名称-报表图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: 'green'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['生物']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: scoreData.bionames
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '生物',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: scoreData.biology
+                    },
+
+                ]
+            };
+            echartsRecords.setOption(biology);
+
+
+
+
+
+
+            var echartsRecords = echarts.init(document.getElementById('chemistry'), 'walden');
+
+            var chemistry = {
+                title: {
+                    text: '指标名称-报表图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: 'green'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['化学']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: scoreData.chenames
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '化学',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: scoreData.chemistry
+                    },
+
+                ]
+            };
+            echartsRecords.setOption(chemistry);
+
+
+
+
+            var echartsRecords = echarts.init(document.getElementById('physics'), 'walden');
+
+            var physics = {
+                title: {
+                    text: '指标名称-报表图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: 'green'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['物理']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: scoreData.phynames
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '物理',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: scoreData.physics
+                    },
+
+                ]
+            };
+            echartsRecords.setOption(physics);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             /**
@@ -330,7 +610,7 @@
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                    data: scoreData.englnames
                 },
                 series: [
                     {
@@ -447,7 +727,13 @@
         });
     })
 
-
+    function getNumber(times) {
+        if(times == -Infinity){
+            return 0;
+        }else{
+            return times;
+        }
+    }
 
 </script>
 </body>

@@ -107,4 +107,8 @@ public interface ScoreMapper {
 
 
     List<ScoreResult> selectAllByProject(SearchCriteron search);
+
+    List<ScoreResult> getSingleProject(SearchCriteron searchCriteron);
+
+    List<ScoreResult> getAllScoresInfor(SearchCriteron searchCriteron);
 }

@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @SpringBootTest
 class ManagerApplicationTests {
@@ -72,6 +70,21 @@ class ManagerApplicationTests {
 			System.out.println("fuck"+"_____________________________"+score+chinese.size());
 
 		}
+
+	}
+	@Test
+	public void test44(){
+		SearchCriteron searchCriteron = new SearchCriteron();
+		searchCriteron.setCname("英语");
+		searchCriteron.setSname("王子怡");
+
+
+		System.out.println(searchCriteron);
+		Map echartsData = scoreService.getEchartsData(searchCriteron);
+		Object lnames = echartsData.get("lnames");
+		System.out.println(lnames);
+
+
 
 	}
 }

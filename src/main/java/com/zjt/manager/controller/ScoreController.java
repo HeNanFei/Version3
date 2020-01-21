@@ -301,11 +301,15 @@ public class ScoreController {
         return map;
     }
 
- /*   @ResponseBody
+    @ResponseBody
     @RequestMapping("/score/scoreTest")
     public Map screTest(){
 
+        SearchCriteron searchCriteron = new SearchCriteron();
 
+        searchCriteron.setSname("王子怡");
+        System.out.println(searchCriteron);
+        Map echartsData = scoreService.getAllScoresInfor(searchCriteron);
+        return echartsData;
     }
-*/
 }
