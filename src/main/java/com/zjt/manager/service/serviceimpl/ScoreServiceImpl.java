@@ -230,6 +230,38 @@ public class ScoreServiceImpl implements ScoreService {
         Integer physicsTimes = physicsResult.size();
         Integer chemistryTimes = chemistryResult.size();
         Integer biologyTimes = biologyResult.size();
+        //上课科目
+        List<String> onGoing = new ArrayList<>();
+
+
+        //判断课程科目数量
+        int totalProjects = 0;
+        if(chineseResult.size() != 0){
+            onGoing.add("语文");
+            totalProjects++;
+        } if(mathResult.size() != 0){
+            onGoing.add("数学");
+
+            totalProjects++;
+        } if(englishResult.size() != 0){
+            onGoing.add("英语");
+
+            totalProjects++;
+        } if(physicsResult.size() != 0){
+            onGoing.add("物理");
+
+            totalProjects++;
+        } if(chemistryResult.size() != 0){
+            onGoing.add("化学");
+
+            totalProjects++;
+        } if(biologyResult.size() != 0){
+            onGoing.add("生物");
+
+            totalProjects++;
+        }
+
+
 
         Map timesMap = new HashMap();
         timesMap.put("chineseTimes",chineseTimes);
@@ -256,6 +288,9 @@ public class ScoreServiceImpl implements ScoreService {
         map.put("chenames",chenames);
         map.put("bionames",bionames);
         map.put("timesMap",timesMap);
+        map.put("totalProjects",totalProjects);
+        map.put("onGoing",onGoing);
+        map.put("totalProjects",totalProjects);
         return map;
     }
 

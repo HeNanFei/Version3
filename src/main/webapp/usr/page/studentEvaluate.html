@@ -40,12 +40,11 @@
                 <div class="layui-card-header">所上课程</div>
                 <div class="layui-card-body">
                     <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="onGoing">
+
                         </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips" id="totalProject">
+
                         </div>
                     </div>
                 </div>
@@ -204,6 +203,8 @@
                 $('#biologyEvaluate').append('<h2>您的生物一共考过'+msg.timesMap.biologyTimes+'次，最佳成绩为'+getNumber(maxBiology)+'分，再接再厉！</h2>');
                 $('#chemistryEvaluate').append('<h2>您的化学一共考过'+msg.timesMap.chemistryTimes+'次，最佳成绩为'+getNumber(maxChemistry)+'分，再接再厉！</h2>');
                $('#physicsEvaluate').append('<h2>您的物理一共考过'+msg.timesMap.physicsTimes+'次，最佳成绩为'+getNumber(maxPhysics)+'分，再接再厉！</h2>');
+                $('#totalProject').append(scoreData.totalProjects+'门');
+                $('#onGoing').append(scoreData.onGoing);
             },
             error:function () {
                 alert('无法查询');
