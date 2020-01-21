@@ -91,6 +91,7 @@ public class ScoreController {
 
 
 
+
     @ResponseBody
     @RequestMapping("/score/realUpdate")
     public String rupdateScore(String score1){
@@ -300,16 +301,26 @@ public class ScoreController {
         map.put("data",chinese);
         return map;
     }
-
+    public String updateSname = null;
     @ResponseBody
     @RequestMapping("/score/scoreTest")
     public Map screTest(){
 
         SearchCriteron searchCriteron = new SearchCriteron();
 
-        searchCriteron.setSname("王子怡");
+        searchCriteron.setSname(updateSname);
         System.out.println(searchCriteron);
         Map echartsData = scoreService.getAllScoresInfor(searchCriteron);
         return echartsData;
     }
+    @ResponseBody
+    @RequestMapping("/score/specificStudent")
+    public String specificStudent(String sname){
+
+       updateSname = sname;
+
+       return "获取该生姓名";
+    }
+
+
 }

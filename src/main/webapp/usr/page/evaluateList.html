@@ -44,9 +44,10 @@
     </div>
 </div>
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+
 <script>
     function change(){
-
         layer.open({
             type: 2,
             skin: 'layui-layer-rim', //加上边框
@@ -203,13 +204,13 @@
             //alert(sid+"jdjkf");
             if (obj.event === 'edit') {
                 //layer.alert('编辑行：<br>' + JSON.stringify(data))
-                var uid = data.sid;
-                //alert(uid);
+                var sname = data.sname;
+                //alert('监听'+uid);
                 $.ajax({
-                    url:'../../student/update',
-                    data:{uid:uid},
+                    url:'../../score/specificStudent',
+                    data:{sname:sname},
                     success:function (msg) {
-                        //alert(msg);
+                        alert(msg);
                     },error:function () {
                         alert('updateFailed');
                     }
