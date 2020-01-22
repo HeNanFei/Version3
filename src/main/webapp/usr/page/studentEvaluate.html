@@ -39,13 +39,11 @@
             <div class="layui-card top-panel">
                 <div class="layui-card-header">所上课程</div>
                 <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="onGoing">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-xs9 layui-col-md10 top-panel-number" id="onGoing">
 
                         </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips" id="totalProject">
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -54,33 +52,14 @@
         <div class="layui-col-xs12 layui-col-md3">
 
             <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
+                <div class="layui-card-header">最佳科目</div>
                 <div class="layui-card-body">
                     <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="bestProject">
+
                         </div>
                         <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="layui-col-xs12 layui-col-md3">
-
-            <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
-                <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
-                        </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
+                            The best！
                         </div>
                     </div>
                 </div>
@@ -196,7 +175,7 @@
                 maxPhysics = Math.max.apply(null, msg.physics);
                 maxChemistry = Math.max.apply(null, msg.chemistry);
                 maxBiology = Math.max.apply(null, msg.biology);
-
+                $('#bestProject').append('<h2>'+msg.bestProject+'</h2>')
                 $('#englishEvaluate').append('<h2>您的英语一共考过'+msg.timesMap.englishTimes+'次，最佳成绩为'+getNumber(maxEnglish)+'分，再接再厉！</h2>');
                 $('#mathEvaluate').append('<h2>您的数学一共考过'+msg.timesMap.mathTimes+'次，最佳成绩为'+getNumber(maxMath)+'分，再接再厉！</h2>');
                 $('#chineseEvaluate').append('<h2>您的语文一共考过'+msg.timesMap.chineseTimes+'次，最佳成绩为'+getNumber(maxChinese)+'分，再接再厉！</h2>');
@@ -223,7 +202,7 @@
 
             var optionRecords = {
                 title: {
-                    text: '指标名称-报表图'
+                    text: '指标名称-英语'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -278,7 +257,7 @@
 
             var math = {
                 title: {
-                    text: '指标名称-报表图'
+                    text: '指标名称-数学'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -336,7 +315,7 @@
 
             var chinese = {
                 title: {
-                    text: '指标名称-报表图'
+                    text: '指标名称-语文'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -392,7 +371,7 @@
 
             var biology = {
                 title: {
-                    text: '指标名称-报表图'
+                    text: '指标名称-生物'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -451,7 +430,7 @@
 
             var chemistry = {
                 title: {
-                    text: '指标名称-报表图'
+                    text: '指标名称-化学'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -508,7 +487,7 @@
 
             var physics = {
                 title: {
-                    text: '指标名称-报表图'
+                    text: '指标名称-物理'
                 },
                 tooltip: {
                     trigger: 'axis',

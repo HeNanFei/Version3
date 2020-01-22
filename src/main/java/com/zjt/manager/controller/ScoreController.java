@@ -322,5 +322,12 @@ public class ScoreController {
        return "获取该生姓名";
     }
 
+    @ResponseBody
+    @RequestMapping("/score/sourceData")
+    public Map sourceData(){
+
+
+        return scoreService.getSourceData();
+    }
 
 }

@@ -180,6 +180,12 @@
               "href": "../usr/page/evaluateList.html",
               "icon": "fa fa-navicon",
               "target": "_self"
+            },
+            {
+              "title": "生源分析",
+              "href": "../usr/page/sourceEvaluate.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
             }
           ]
         },

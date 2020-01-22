@@ -360,5 +360,11 @@
      select *  from course c inner join score s on c.cid = s.cid  and sname =#{sname} order by cname;
   </select>
 
+  <select id="getJuniorData" resultType="com.zjt.manager.pojo.result.SourceData">
+    select distinct(school),count(school) count  from student where school like '%小%'  group by school;
+  </select>
+  <select id="getSeniorData" resultType="com.zjt.manager.pojo.result.SourceData">
+    select distinct(school),count(school)  count  from student where school like '%中%'  group by school;
+  </select>
 
 </mapper>

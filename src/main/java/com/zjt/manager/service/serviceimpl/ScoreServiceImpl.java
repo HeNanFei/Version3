@@ -4,6 +4,7 @@ import com.zjt.manager.mapper.ScoreMapper;
 import com.zjt.manager.pojo.Score;
 import com.zjt.manager.pojo.ScoreExample;
 import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.result.SourceData;
 import com.zjt.manager.pojo.search.SearchCriteron;
 import com.zjt.manager.service.ScoreService;
 import org.apache.jasper.tagplugins.jstl.core.If;
@@ -311,6 +312,12 @@ public class ScoreServiceImpl implements ScoreService {
             }
         }
 
+
+
+
+
+
+
         Map timesMap = new HashMap();
         timesMap.put("chineseTimes",chineseTimes);
         timesMap.put("mathTimes",mathTimes);
@@ -341,6 +348,53 @@ public class ScoreServiceImpl implements ScoreService {
         map.put("totalProjects",totalProjects);
         map.put("onGoing",onGoing);
         map.put("totalProjects",totalProjects);
+
+
+
+
+
+        return map;
+    }
+
+    @Override
+    public Map getSourceData() {
+        Map map = new HashMap();
+        //获取饼状图数据
+
+        //小学统计
+        List<Map> juniorList = new ArrayList<>();
+        List<String> juniorNames = new ArrayList<>();
+
+
+        //中学统计
+        List<Map> seniorList = new ArrayList<>();
+        List<String> seniorNames = new ArrayList<>();
+
+
+        List<SourceData> seniorData = scoreMapper.getSeniorData();
+        List<SourceData> juniorData = scoreMapper.getJuniorData();
+        for(int i=0;i<seniorData.size();i++){
+            Map<String,Object> seniorMap = new HashMap<>();
+            seniorMap.put("name",seniorData.get(i).getSchool());
+            seniorMap.put("value",seniorData.get(i).getCount());
+            seniorList.add(seniorMap);
+            seniorNames.add(seniorData.get(i).getSchool());
+        }
+        for(int i=0;i<juniorData.size();i++){
+            Map<String,Object> juniorMap = new HashMap<>();
+            juniorMap.put("name",juniorData.get(i).getSchool());
+            juniorMap.put("value",juniorData.get(i).getCount());
+            juniorList.add(juniorMap);
+            juniorNames.add(juniorData.get(i).getSchool());
+        }
+
+
+
+        //饼状图
+        map.put("seniorList",seniorList);
+        map.put("juniorList",juniorList);
+        map.put("seniorNames",seniorNames);
+        map.put("juniorNames",juniorNames);
         return map;
     }
 

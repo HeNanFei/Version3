@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页三</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../usr/css/public.css" media="all">
+    <style>
+        .top-panel {
+            border: 1px solid #eceff9;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .top-panel > .layui-card-body{
+            height: 60px;
+        }
+        .top-panel-number{
+            line-height:60px;
+            font-size: 30px;
+            border-right:1px solid #eceff9;
+        }
+        .top-panel-tips{
+            line-height:30px;
+            font-size: 12px
+        }
+    </style>
+</head>
+<body>
+<!--<div class="layuimini-container">-->
+<div class="layuimini-main">
+
+
+
+    <div class="layui-row layui-col-space15">
+
+        <div class="layui-col-xs12 layui-col-md12">
+            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+
+
+    <div class="layui-row layui-col-space15">
+
+        <div class="layui-col-xs12 layui-col-md12">
+            <div id="senior" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<!--</div>-->
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script>
+    var scoreData;
+   $(function () {
+
+       $.ajax({
+           url: '../../score/sourceData',
+           success: function (msg) {
+
+               scoreData = msg;
+
+           },
+           error:function () {
+               alert('权限不足');
+           }
+       })
+
+       layui.use(['layer', 'echarts'], function () {
+           var $ = layui.jquery,
+               layer = layui.layer,
+               echarts = layui.echarts;
+
+
+
+
+           /**
+            * 玫瑰图表
+            */
+           var echartsPies = echarts.init(document.getElementById('echarts-pies'), 'walden');
+           var optionPies = {
+               title: {
+                   text: '生源分析-小学',
+                   left: 'center'
+               },
+               tooltip: {
+                   trigger: 'item',
+                   formatter: '{a} <br/>{b} : {c} ({d}%)'
+               },
+               legend: {
+                   orient: 'vertical',
+                   left: 'left',
+                   data: scoreData.juniorNames
+               },
+               series: [
+                   {
+                       name: '学生来源',
+                       type: 'pie',
+                       radius: '55%',
+                       center: ['50%', '60%'],
+                       roseType: 'radius',
+                       data: scoreData.juniorList,
+                       emphasis: {
+                           itemStyle: {
+                               shadowBlur: 10,
+                               shadowOffsetX: 0,
+                               shadowColor: 'rgba(0, 0, 0, 0.5)'
+                           }
+                       }
+                   }
+               ]
+           };
+           echartsPies.setOption(optionPies);
+
+           var echartsPies = echarts.init(document.getElementById('senior'), 'walden');
+           var senior = {
+               title: {
+                   text: '生源分析-中学',
+                   left: 'center'
+               },
+               tooltip: {
+                   trigger: 'item',
+                   formatter: '{a} <br/>{b} : {c} ({d}%)'
+               },
+               legend: {
+                   orient: 'vertical',
+                   left: 'left',
+                   data: scoreData.seniorNames
+               },
+               series: [
+                   {
+                       name: '学生来源',
+                       type: 'pie',
+                       radius: '55%',
+                       center: ['50%', '60%'],
+                       roseType: 'radius',
+                       data: scoreData.seniorList,
+                       emphasis: {
+                           itemStyle: {
+                               shadowBlur: 10,
+                               shadowOffsetX: 0,
+                               shadowColor: 'rgba(0, 0, 0, 0.5)'
+                           }
+                       }
+                   }
+               ]
+           };
+           echartsPies.setOption(senior);
+
+
+
+           // echarts 窗口缩放自适应
+           window.onresize = function () {
+               echartsRecords.resize();
+           }
+
+       });
+   })
+</script>
+</body>
+</html>

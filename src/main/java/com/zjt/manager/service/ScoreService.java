@@ -33,4 +33,7 @@ public interface ScoreService {
 
     Map getAllScoresInfor(SearchCriteron searchCriteron);
 
+
+    Map getSourceData();
+
 }

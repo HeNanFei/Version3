@@ -2,20 +2,25 @@ package com.zjt.manager;
 
 
 
+import com.alibaba.fastjson.JSON;
+
 import com.zjt.manager.mapper.ScoreMapper;
 import com.zjt.manager.mapper.TeacherMapper;
 import com.zjt.manager.pojo.Score;
 import com.zjt.manager.pojo.Teacher;
 import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.result.SourceData;
 import com.zjt.manager.pojo.search.SearchCriteron;
 import com.zjt.manager.service.CourseService;
 import com.zjt.manager.service.ScoreService;
 import com.zjt.manager.util.DateUtil;
 import com.zjt.manager.util.StringUtil;
+import javafx.scene.chart.PieChart;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.*;
 
@@ -109,4 +114,51 @@ class ManagerApplicationTests {
 
 
 	}
+	@Test
+	public void te(){
+
+		List<Map> list = new ArrayList<>();
+		String [] source = {"谢洋小学","龙门小学"};
+		int [] data = {12,21};
+
+		for(int i = 0;i<source.length;i++){
+			Map<String,Object> map = new HashMap<>();
+			map.put("name",source[i]);
+			list.add(map);
+		}
+		for(int i = 0;i<data.length;i++){
+			Map<String,Object> map = new HashMap<>();
+			map.put("value",data[i]);
+			list.add(map);
+		}
+
+		String s = JSON.toJSONString(list);
+		System.out.println(s);
+
+
+	}
+	@Test
+	public void testPie() {
+
+
+		List<SourceData> juniorData = scoreMapper.getJuniorData();
+		for (SourceData source:juniorData
+			 ) {
+			System.out.println("中学"+source);
+		}
+
+		List<SourceData> seniorData = scoreMapper.getSeniorData();
+		for (SourceData s:seniorData
+			 ) {
+			System.out.println("小学"+s);
+		}
+
+
+	}
+
+
+
+
+
+
 }

@@ -5,6 +5,7 @@ import com.zjt.manager.pojo.ScoreExample;
 import java.util.List;
 
 import com.zjt.manager.pojo.result.ScoreResult;
+import com.zjt.manager.pojo.result.SourceData;
 import com.zjt.manager.pojo.search.SearchCriteron;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -111,4 +112,10 @@ public interface ScoreMapper {
     List<ScoreResult> getSingleProject(SearchCriteron searchCriteron);
 
     List<ScoreResult> getAllScoresInfor(SearchCriteron searchCriteron);
+
+    List<SourceData> getJuniorData();
+
+    List<SourceData> getSeniorData();
+
+
 }
