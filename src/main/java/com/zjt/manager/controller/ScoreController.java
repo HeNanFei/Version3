@@ -154,27 +154,23 @@ public class ScoreController {
     @ResponseBody
     @RequestMapping("/score/list/chinese")
     public Map listChinese(SearchCriteron searchCriteron){
-
+        System.out.println(searchCriteron);
+        searchCriteron.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        searchCriteron.setLimit(searchCriteron.getLimit()-1);
+        if (searchCriteron.getProjectName()==null){
+            searchCriteron.setProjectName("语文");
+        }
         System.out.println(searchCriteron+"语文搜索条件");
 
 
-        SearchCriteron search = new SearchCriteron();
-
-        search.setProjectName("语文");
-
-        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
-        search.setLimit(searchCriteron.getLimit()-1);
-        System.out.println("条件搜索"+search);
-
-
-        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
+        List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();
         map.put("code",0);
         map.put("msg","");
 
-        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(searchCriteron);
         map.put("count",allScoreReults.size());
         map.put("data",chinese);
         return map;
@@ -184,22 +180,23 @@ public class ScoreController {
     @RequestMapping("/score/list/math")
     public Map listMath(SearchCriteron searchCriteron){
 
-        SearchCriteron search = new SearchCriteron();
+        System.out.println(searchCriteron);
+        searchCriteron.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        searchCriteron.setLimit(searchCriteron.getLimit()-1);
+        if (searchCriteron.getProjectName()==null){
+            searchCriteron.setProjectName("数学");
+        }
 
-        search.setProjectName("数学");
-        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
-        search.setLimit(searchCriteron.getLimit()-1);
-        System.out.println("条件搜索"+search);
 
 
-        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
-
+        List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();
         map.put("code",0);
         map.put("msg","");
-        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(searchCriteron);
         map.put("count",allScoreReults.size());
         map.put("data",chinese);
         return map;

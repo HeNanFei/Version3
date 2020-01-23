@@ -30,7 +30,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">考试名称</label>
                             <div class="layui-input-inline">
-                                <input type="hidden" name="projectName" id="projectName" autocomplete="off" class="layui-input" value="语文">
+                                <input type="hidden" name="lname" id="lname" autocomplete="off" class="layui-input" >
                                 <input type="text" name="lname" id="lname" autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">所在班级</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="cname" id="cname" autocomplete="off" class="layui-input">
+                                <input type="text" name="projectName" id="projectName" autocomplete="off" class="layui-input" value="语文">
                             </div>
                         </div>
 
@@ -184,7 +184,6 @@
                 , where: {
                     sname:data.field.sname,
                     lname:data.field.lname,
-                    cname:data.field.cname,
                     projectName:data.field.projectName
                 }
             }, 'data');

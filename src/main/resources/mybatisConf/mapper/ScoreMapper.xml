@@ -343,9 +343,18 @@
   </select>
   <select id="selectByProject" resultType="com.zjt.manager.pojo.result.ScoreResult" parameterType="com.zjt.manager.pojo.search.SearchCriteron">
 
-    select * from score s join course c on s.cid = c.cid and  cname like
-    CONCAT('%',#{projectName},'%') limit #{page},#{limit}
+    select * from score s inner join course c on s.cid = c.cid
 
+    <if test="projectName != null and projectName != ''">
+      and cname like  CONCAT('%',#{projectName},'%')
+    </if>
+    <if test="sname != null and sname != ''">
+      and sname = #{sname}
+    </if>
+    <if test="lname != null and lname != ''">
+      and lname like  CONCAT('%',#{lname},'%')
+    </if>
+    limit #{page},#{limit}
   </select>
 
   <select id="selectAllByProject" resultType="com.zjt.manager.pojo.result.ScoreResult" parameterType="com.zjt.manager.pojo.search.SearchCriteron">
@@ -379,6 +388,7 @@
     <if test="lname != null">
       and lname = #{lname}
     </if>
+
 
 
   </select>
