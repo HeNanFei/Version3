@@ -18,7 +18,7 @@
 		       	    <input  type="text" name="username"  value="admin" />
 		        </div>
 		        <div class="password" >
-		        	<div id="yonghu" >密&nbsp;&nbsp;&nbsp;码</div>
+		        	<div id="password" >密&nbsp;&nbsp;&nbsp;码</div>
 		       	    <input class="" type="password" name="password" value="admin" />
 		        </div>
 		        <div class="rem" >

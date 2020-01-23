@@ -117,5 +117,7 @@ public interface ScoreMapper {
 
     List<SourceData> getSeniorData();
 
+    List<Score> dynamicSearch(SearchCriteron searchCriteron);
+
 
 }

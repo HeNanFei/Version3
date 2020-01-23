@@ -41,7 +41,7 @@ public class SecurityConfig{
     @Configuration
     @Order(1)
     public static class LoginConfig extends WebSecurityConfigurerAdapter {
-        @Override
+       /* @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable();
             http.headers().frameOptions().disable();
@@ -55,7 +55,24 @@ public class SecurityConfig{
             http.authorizeRequests().antMatchers("/teacher/**").authenticated().
                     antMatchers("/teacher/**").hasAuthority("root");
 
-        }
+        }*/
+
+
+       @Override
+       protected void configure(HttpSecurity http) throws Exception {
+           http.csrf().disable();
+           http.headers().frameOptions().disable();
+           http.authorizeRequests().antMatchers("/user/**").authenticated().antMatchers("/user/**").hasAuthority("root")
+                   .and().formLogin().loginPage("/login2").loginProcessingUrl("/login/test")
+                   .successForwardUrl("/success").and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
+
+           http.authorizeRequests().antMatchers("/test/**").authenticated().
+                   antMatchers("/test/**").hasAuthority("1");
+
+           http.authorizeRequests().antMatchers("/teacher/**").authenticated().
+                   antMatchers("/teacher/**").hasAuthority("root");
+
+       }
     }
 
    /* @Override

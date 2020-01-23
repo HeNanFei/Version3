@@ -190,7 +190,20 @@
           ]
         },
 
-
+        {
+          "title": "文件管理",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [
+            {
+              "title": "上传文件",
+              "href": "../usr/page/uploadFile.html",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
 
 
 
@@ -288,56 +301,9 @@
         }
       ]
     },
-    "component": {
-      "title": "组件管理",
-      "icon": "fa fa-lemon-o",
-      "child": [
-        {
-          "title": "图标列表",
-          "href": "../usr/page/icon.html",
-          "icon": "fa fa-dot-circle-o",
-          "target": "_self"
-        },
-        {
-          "title": "图标选择",
-          "href": "../usr/page/icon-picker.html",
-          "icon": "fa fa-adn",
-          "target": "_self"
-        },
-        {
-          "title": "颜色选择",
-          "href": "../usr/page/color-select.html",
-          "icon": "fa fa-dashboard",
-          "target": "_self"
-        },
-        {
-          "title": "下拉选择",
-          "href": "../usr/page/table-select.html",
-          "icon": "fa fa-angle-double-down",
-          "target": "_self"
-        },
-        {
-          "title": "文件上传",
-          "href": "../usr/page/upload.html",
-          "icon": "fa fa-arrow-up",
-          "target": "_self"
-        },
-        {
-          "title": "富文本编辑器",
-          "href": "../usr/page/editor.html",
-          "icon": "fa fa-edit",
-          "target": "_self"
-        },
-        {
-          "title": "省市县区选择器",
-          "href": "../usr/page/area.html",
-          "icon": "fa fa-rocket",
-          "target": "_self"
-        }
-      ]
-    },
+
     "other": {
-      "title": "其它管理",
+      "title": "权限管理",
       "icon": "fa fa-slideshare",
       "child": [
         {
@@ -377,8 +343,8 @@
           ]
         },
         {
-          "title": "失效菜单",
-          "href": "../usr/page/error.html",
+          "title": "权限列表",
+          "href": "../usr/page/menu.html",
           "icon": "fa fa-superpowers",
           "target": "_self"
         }

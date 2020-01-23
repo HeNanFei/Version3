@@ -155,7 +155,18 @@ class ManagerApplicationTests {
 
 
 	}
+	@Test
+	public void test144(){
+		SearchCriteron searchCriteron = new SearchCriteron();
+		searchCriteron.setProjectName("语文");
 
+		List<Score> scores = scoreMapper.dynamicSearch(searchCriteron);
+		for (Score s:scores
+			 ) {
+			System.out.println(s);
+		}
+
+	}
 
 
 

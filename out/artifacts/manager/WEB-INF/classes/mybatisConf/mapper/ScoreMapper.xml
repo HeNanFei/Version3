@@ -367,4 +367,21 @@
     select distinct(school),count(school)  count  from student where school like '%中%'  group by school;
   </select>
 
+  <select id="dynamicSearch" parameterType="com.zjt.manager.pojo.search.SearchCriteron" resultType="com.zjt.manager.pojo.Score">
+    select * from score s inner join course c on s.cid = c.cid
+
+    <if test="projectName != null">
+      and cname like  CONCAT('%',#{projectName},'%')
+    </if>
+    <if test="sname != null">
+     and sname = #{sname}
+    </if>
+    <if test="lname != null">
+      and lname = #{lname}
+    </if>
+
+
+  </select>
+
+
 </mapper>

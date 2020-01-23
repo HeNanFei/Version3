@@ -155,6 +155,9 @@ public class ScoreController {
     @RequestMapping("/score/list/chinese")
     public Map listChinese(SearchCriteron searchCriteron){
 
+        System.out.println(searchCriteron+"语文搜索条件");
+
+
         SearchCriteron search = new SearchCriteron();
 
         search.setProjectName("语文");
@@ -165,10 +168,6 @@ public class ScoreController {
 
 
         List<ScoreResult> chinese = scoreMapper.selectByProject(search);
-        for(int i=0;i<chinese.size();i++){
-
-
-        }
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();

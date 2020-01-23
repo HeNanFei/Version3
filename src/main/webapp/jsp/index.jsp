@@ -39,7 +39,7 @@
 		<div class="layui-form login-form">
 			<form class="layui-form" action="/manager/login/test" method="post">
 				<div class="layui-form-item logo-title">
-					<h1>LayuiMini后台登录</h1>
+					<h1>滇宏教育后台管理</h1>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-icon layui-icon-username" for="username"></label>
@@ -49,16 +49,16 @@
 					<label class="layui-icon layui-icon-password" for="password"></label>
 					<input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123456">
 				</div>
-				<div class="layui-form-item">
+				<%--<div class="layui-form-item">
 					<label class="layui-icon layui-icon-vercode" for="captcha"></label>
 					<input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
 					<div class="captcha-img">
 						<img id="captchaPic" src="../images/captcha.jpg">
 					</div>
-				</div>
-				<div class="layui-form-item">
+				</div>--%>
+				<%--<div class="layui-form-item">
 					<input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
-				</div>
+				</div>--%>
 				<div class="layui-form-item">
 					<button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
 				</div>
@@ -96,10 +96,10 @@
 				layer.msg('密码不能为空');
 				return false;
 			}
-			if (data.captcha == '') {
+			/*if (data.captcha == '') {
 				layer.msg('验证码不能为空');
 				return false;
-			}
+			}*/
 			/*layer.msg('账号密码不对哦', function () {
 				//window.location = '/index.html';
 			});*/
