@@ -8,6 +8,9 @@ spring:
     view:
       suffix: .jsp
       prefix: /jsp/
+
 mybatis:
    mapper-locations: classpath:mybatisConf/mapper/*.xml
+
+
 

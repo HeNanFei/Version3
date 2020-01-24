@@ -205,22 +205,23 @@ public class ScoreController {
     @RequestMapping("/score/list/english")
     public Map listEnglish(SearchCriteron searchCriteron){
 
-        SearchCriteron search = new SearchCriteron();
+        System.out.println(searchCriteron);
+        searchCriteron.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        searchCriteron.setLimit(searchCriteron.getLimit()-1);
+        if (searchCriteron.getProjectName()==null){
+            searchCriteron.setProjectName("英语");
+        }
 
-        search.setProjectName("英语");
-        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
-        search.setLimit(searchCriteron.getLimit()-1);
-        System.out.println("条件搜索"+search);
 
 
-        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
-
+        List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();
         map.put("code",0);
         map.put("msg","");
-        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(searchCriteron);
         map.put("count",allScoreReults.size());
         map.put("data",chinese);
         return map;
@@ -229,22 +230,23 @@ public class ScoreController {
     @RequestMapping("/score/list/physics")
     public Map physics(SearchCriteron searchCriteron){
 
-        SearchCriteron search = new SearchCriteron();
+        System.out.println(searchCriteron);
+        searchCriteron.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        searchCriteron.setLimit(searchCriteron.getLimit()-1);
+        if (searchCriteron.getProjectName()==null){
+            searchCriteron.setProjectName("物理");
+        }
 
-        search.setProjectName("物理");
-        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
-        search.setLimit(searchCriteron.getLimit()-1);
-        System.out.println("条件搜索"+search);
 
 
-        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
-
+        List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();
         map.put("code",0);
         map.put("msg","");
-        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(searchCriteron);
         map.put("count",allScoreReults.size());
         map.put("data",chinese);
         return map;
@@ -253,22 +255,23 @@ public class ScoreController {
     @RequestMapping("/score/list/chemistry")
     public Map chemistry(SearchCriteron searchCriteron){
 
-        SearchCriteron search = new SearchCriteron();
+        System.out.println(searchCriteron);
+        searchCriteron.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        searchCriteron.setLimit(searchCriteron.getLimit()-1);
+        if (searchCriteron.getProjectName()==null){
+            searchCriteron.setProjectName("化学");
+        }
 
-        search.setProjectName("化学");
-        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
-        search.setLimit(searchCriteron.getLimit()-1);
-        System.out.println("条件搜索"+search);
 
 
-        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
-
+        List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();
         map.put("code",0);
         map.put("msg","");
-        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(searchCriteron);
         map.put("count",allScoreReults.size());
         map.put("data",chinese);
         return map;
@@ -277,22 +280,23 @@ public class ScoreController {
     @RequestMapping("/score/list/biology")
     public Map bology(SearchCriteron searchCriteron){
 
-        SearchCriteron search = new SearchCriteron();
+        System.out.println(searchCriteron);
+        searchCriteron.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
+        searchCriteron.setLimit(searchCriteron.getLimit()-1);
+        if (searchCriteron.getProjectName()==null){
+            searchCriteron.setProjectName("生物");
+        }
 
-        search.setProjectName("生物");
-        search.setPage((searchCriteron.getPage()-1)*searchCriteron.getLimit());
-        search.setLimit(searchCriteron.getLimit()-1);
-        System.out.println("条件搜索"+search);
 
 
-        List<ScoreResult> chinese = scoreMapper.selectByProject(search);
-
+        List<ScoreResult> chinese = scoreMapper.selectByProject(searchCriteron);
 
         System.out.println(chinese.size()+"____________________");
         Map map = new HashMap();
         map.put("code",0);
         map.put("msg","");
-        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(search);
+
+        List<ScoreResult> allScoreReults = scoreService.getAllScoreReults(searchCriteron);
         map.put("count",allScoreReults.size());
         map.put("data",chinese);
         return map;

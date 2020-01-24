@@ -3,6 +3,7 @@ package com.zjt.manager.service.serviceimpl;
 import com.zjt.manager.mapper.UserMapper;
 import com.zjt.manager.pojo.User;
 import com.zjt.manager.pojo.UserExample;
+import com.zjt.manager.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,20 @@ public class CheckLogin implements UserDetailsService {
         logger.debug("users list length_________________"+users);
 
 
-            UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(users.getUsername()).password(users.getPassword()).authorities(users.getType()).build();
+        logger.debug("UserInfor"+users);
+        String type = users.getType();
+
+
+        UserDetails userDetails = null;
+
+        org.springframework.security.core.userdetails.User user;
+
+        String[] split = type.split(",");
+        for (int i =0;i<split.length;i++){
+            System.out.println("用户类型"+split[i]);
+           userDetails =  org.springframework.security.core.userdetails.User.withUsername(users.getUsername()).password(users.getPassword()).authorities(split[i]).build();
+        }
+        logger.debug("userDetails"+userDetails.toString());
 
 
         return userDetails;

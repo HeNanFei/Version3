@@ -201,6 +201,11 @@
               "href": "../usr/page/uploadFile.html",
               "icon": "fa fa-list-alt",
               "target": "_self"
+            }, {
+              "title": "资料库",
+              "href": "../../manager/rs/",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
             }
           ]
         },

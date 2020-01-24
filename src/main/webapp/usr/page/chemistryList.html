@@ -18,16 +18,39 @@
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
+
+
                         <div class="layui-inline">
                             <label class="layui-form-label">学生姓名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="scorename" id="scorename" autocomplete="off" class="layui-input">
+                                <input type="text" name="sname" id="sname" autocomplete="off" class="layui-input">
                             </div>
                         </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">考试名称</label>
+                            <div class="layui-input-inline">
+
+                                <input type="text" name="lname" id="lname" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">所在班级</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="projectName" id="projectName" autocomplete="off" class="layui-input" value="化学">
+                            </div>
+                        </div>
+
                         <div class="layui-inline">
                             <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
                         </div>
                     </div>
+
+
+
+
+
                 </form>
             </div>
         </fieldset>
@@ -134,8 +157,20 @@
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field.scorename);
-            var scorename = result.substring(1,result.length-1);
+            /* var result = JSON.stringify(data.field.sname);
+             var sname = result.substring(1,result.length-1);
+
+             var result2 = JSON.stringify(data.field.lname);
+             var lname = result2.substring(1,result2.length-1)
+
+
+             var result3 = JSON.stringify(data.field.cname);
+             var cname = result3.substring(1,result3.length-1)
+
+             var result4 = JSON.stringify(data.field.projectName);
+             var projectName = result4.substring(1,result4.length-1)
+ */
+            //alert(data.field.lname);
             // var roleid = JSON.stringify(data.field.roleid);
             /*layer.alert(scorename, {
                 title: '最终的搜索信息'
@@ -147,7 +182,9 @@
                     curr: 1
                 }
                 , where: {
-                    scorename:scorename
+                    sname:data.field.sname,
+                    lname:data.field.lname,
+                    projectName:data.field.projectName
                 }
             }, 'data');
 

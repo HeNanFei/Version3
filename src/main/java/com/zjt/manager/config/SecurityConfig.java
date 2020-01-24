@@ -66,11 +66,23 @@ public class SecurityConfig{
                    .and().formLogin().loginPage("/login2").loginProcessingUrl("/login/test")
                    .successForwardUrl("/success").and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
 
-           http.authorizeRequests().antMatchers("/test/**").authenticated().
-                   antMatchers("/test/**").hasAuthority("1");
+          /* http.authorizeRequests().antMatchers("/test/**").authenticated().
+                   antMatchers("/test/**").hasAuthority("1");*/
 
-           http.authorizeRequests().antMatchers("/teacher/**").authenticated().
-                   antMatchers("/teacher/**").hasAuthority("root");
+           http.authorizeRequests().antMatchers("/teacher/delete").authenticated().
+                   antMatchers("/teacher/delete").hasAuthority("7");
+
+
+
+           http.authorizeRequests().antMatchers("/teacher/realUpdate").authenticated().
+                   antMatchers("/teacher/realUpdate").hasAuthority("7");
+
+
+           http.authorizeRequests().antMatchers("/student/delete").authenticated().
+                   antMatchers("/student/delete").hasAuthority("7");
+
+           http.authorizeRequests().antMatchers("/user/**").authenticated().
+                   antMatchers("/user/**").hasAuthority("7");
 
        }
     }
