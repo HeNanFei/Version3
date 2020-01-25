@@ -17,10 +17,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="../../manager/images/favicon.ico">
-    <link rel="stylesheet" href="../../manager/usr/lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../manager/css/layuimini.css" media="all">
-    <link rel="stylesheet" href="../../manager/usr/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="icon" href="../../manager2/images/favicon.ico">
+    <link rel="stylesheet" href="../../manager2/usr/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../manager2/css/layuimini.css" media="all">
+    <link rel="stylesheet" href="../../manager2/usr/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -114,8 +114,8 @@
 </script>
 <!--百度统计代码-结束-->
 
-<script src="../../manager/usr/lib/layui-v2.5.5/layui.js?v=1.0.4" charset="utf-8"></script>
-<script src="../../manager/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../../manager2/usr/lib/layui-v2.5.5/layui.js?v=1.0.4" charset="utf-8"></script>
+<script src="../../manager2/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['element', 'layer', 'layuimini'], function () {
         var $ = layui.jquery,

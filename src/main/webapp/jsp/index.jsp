@@ -11,7 +11,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="../manager/usr/lib/layui-v2.5.5/css/layui.css" media="all">
+	<link rel="stylesheet" href="../manager2/usr/lib/layui-v2.5.5/css/layui.css" media="all">
 	<!--[if lt IE 9]>
 	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -37,7 +37,7 @@
 <div class="layui-container">
 	<div class="admin-login-background">
 		<div class="layui-form login-form">
-			<form class="layui-form" action="/manager/login/test" method="post">
+			<form class="layui-form" action="/manager2/login/test" method="post">
 				<div class="layui-form-item logo-title">
 					<h1>滇宏教育后台管理</h1>
 				</div>
@@ -66,9 +66,9 @@
 		</div>
 	</div>
 </div>
-<script src="../manager/usr/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
-<script src="../manager/usr/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="../manager/usr/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+<script src="../manager2/usr/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../manager2/usr/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../manager2/usr/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script>
 	layui.use(['form'], function () {
 		var form = layui.form,

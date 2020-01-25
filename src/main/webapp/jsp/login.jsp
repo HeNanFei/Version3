@@ -24,7 +24,7 @@
 		        <div class="rem" >
 		       	  <input type="checkbox" name="" id="" value="" />
 		        	 <div id="reb">
-		        	 	记住密码
+		        	 	记住密码ini
 		        	 </div>
 		        </div>
 		        <div class="fg" >

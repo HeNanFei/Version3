@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +15,15 @@ import java.util.Map;
 public class UploadController {
     @RequestMapping(value = "/uploadDocs",produces="application/json;charset=utf-8")
     @ResponseBody
-    public Map<String,Object> uploadDocs(MultipartFile file,String grade,String project) {
+    public Map<String,Object> uploadDocs(MultipartFile file,String grade,String project) throws UnsupportedEncodingException {
         System.out.println(grade+project);
         Map<String, Object> uploadData = new HashMap<String, Object>();
-        String uploadDocsPath = "C:\\Users\\Administrator\\Desktop\\"+grade+"\\"+project+"\\";
+        //String uploadDocsPath = "/resource/rs/"+grade+"/"+project+"/";
+        String uploadDocsPath = "C:\\Users\\Administrator\\Desktop"+"\\"+grade+"\\"+project;
         String fileName = file.getOriginalFilename();
+        fileName = new String(fileName.getBytes(), "UTF-8");
         File dir = new File(uploadDocsPath, fileName);
+
         if (!dir.exists()) {
             dir.mkdirs();
         }

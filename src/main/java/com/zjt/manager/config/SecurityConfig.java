@@ -62,7 +62,7 @@ public class SecurityConfig{
        protected void configure(HttpSecurity http) throws Exception {
            http.csrf().disable();
            http.headers().frameOptions().disable();
-           http.authorizeRequests().antMatchers("/user/**").authenticated().antMatchers("/user/**").hasAuthority("root")
+           http.authorizeRequests().antMatchers("/user/add").authenticated().antMatchers("/user/add").hasAuthority("7")
                    .and().formLogin().loginPage("/login2").loginProcessingUrl("/login/test")
                    .successForwardUrl("/success").and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
 
@@ -71,6 +71,9 @@ public class SecurityConfig{
 
            http.authorizeRequests().antMatchers("/teacher/delete").authenticated().
                    antMatchers("/teacher/delete").hasAuthority("7");
+
+           http.authorizeRequests().antMatchers("/teacher/add").authenticated().
+                   antMatchers("/teacher/add").hasAuthority("7");
 
 
 
@@ -81,8 +84,11 @@ public class SecurityConfig{
            http.authorizeRequests().antMatchers("/student/delete").authenticated().
                    antMatchers("/student/delete").hasAuthority("7");
 
-           http.authorizeRequests().antMatchers("/user/**").authenticated().
-                   antMatchers("/user/**").hasAuthority("7");
+           http.authorizeRequests().antMatchers("/user/delete").authenticated().
+                   antMatchers("/user/delete").hasAuthority("7");
+
+           http.authorizeRequests().antMatchers("/user/realUpdate").authenticated().
+                   antMatchers("/user/realUpdatee").hasAuthority("7");
 
        }
     }

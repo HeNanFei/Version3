@@ -62,27 +62,11 @@
                 </div>
             </div>
 
-            <div class="layui-form-item">
-
-                    <div class="layui-upload">
-                        <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-                        <div class="layui-upload-list">
-                            <table class="layui-table">
-                                <thead>
-                                <tr><th>文件名</th>
-                                    <th>大小</th>
-                                    <th>状态</th>
-                                    <th>操作</th>
-                                </tr></thead>
-                                <tbody id="demoList"></tbody>
-                            </table>
-                        </div>
-                        <button type="button" class="layui-btn" id="testListAction">开始上传</button>
-                    </div>
 
 
 
-            </div>
+
+
 
 
             <!--<div class="layui-form-item layui-form-text">
@@ -93,6 +77,22 @@
             </div>-->
 
         </form>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+            <div class="layui-upload-list">
+                <table class="layui-table">
+                    <thead>
+                    <tr><th>文件名</th>
+                        <th>大小</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr></thead>
+                    <tbody id="demoList"></tbody>
+                </table>
+            </div>
+            <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+        </div>
+
 
         <!-- 示例-970 -->
         <ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>
@@ -133,6 +133,7 @@
                 var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
                 //读取本地文件
                 obj.preview(function(index, file, result){
+                    //alert(file.name);
                     var tr = $(['<tr id="upload-'+ index +'">'
                         ,'<td>'+ file.name +'</td>'
                         ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
