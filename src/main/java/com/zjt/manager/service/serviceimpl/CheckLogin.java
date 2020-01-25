@@ -44,10 +44,12 @@ public class CheckLogin implements UserDetailsService {
         org.springframework.security.core.userdetails.User user;
 
         String[] split = type.split(",");
+        String [] strings = new String[split.length];
         for (int i =0;i<split.length;i++){
-            System.out.println("用户类型"+split[i]);
-           userDetails =  org.springframework.security.core.userdetails.User.withUsername(users.getUsername()).password(users.getPassword()).authorities(split[i]).build();
+
+           strings[i] = split[i];
         }
+        userDetails =  org.springframework.security.core.userdetails.User.withUsername(users.getUsername()).password(users.getPassword()).authorities(strings).build();
         logger.debug("userDetails"+userDetails.toString());
 
 

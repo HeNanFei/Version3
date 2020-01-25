@@ -18,10 +18,10 @@ public class UploadController {
     public Map<String,Object> uploadDocs(MultipartFile file,String grade,String project) throws UnsupportedEncodingException {
         System.out.println(grade+project);
         Map<String, Object> uploadData = new HashMap<String, Object>();
-        //String uploadDocsPath = "/resource/rs/"+grade+"/"+project+"/";
-        String uploadDocsPath = "C:\\Users\\Administrator\\Desktop"+"\\"+grade+"\\"+project;
+        String uploadDocsPath = "/resource/rs/"+grade+"/"+project+"/";
+        //String uploadDocsPath = "C:\\Users\\Administrator\\Desktop"+"\\"+grade+"\\"+project;
         String fileName = file.getOriginalFilename();
-        fileName = new String(fileName.getBytes(), "UTF-8");
+
         File dir = new File(uploadDocsPath, fileName);
 
         if (!dir.exists()) {
