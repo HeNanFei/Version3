@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="../css/public.css" media="all">
     <link rel="stylesheet" href="../css/layuimini.css" media="all">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 
 <body>
@@ -133,7 +133,7 @@
                 var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
                 //读取本地文件
                 obj.preview(function(index, file, result){
-                    //alert(file.name);
+                    alert(file.name);
                     var tr = $(['<tr id="upload-'+ index +'">'
                         ,'<td>'+ file.name +'</td>'
                         ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
