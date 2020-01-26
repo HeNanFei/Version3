@@ -101,12 +101,6 @@
           "target": "_self",
           "child": [
             {
-              "title": "成绩列表",
-              "href": "../usr/page/scoreList.html",
-              "icon": "fa fa-list-alt",
-              "target": "_self"
-            },
-            {
               "title": "成绩录入",
               "href": "../usr/page/scores.html",
               "icon": "fa fa-navicon",

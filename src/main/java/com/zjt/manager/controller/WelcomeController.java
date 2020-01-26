@@ -52,8 +52,8 @@ public class WelcomeController {
 
         List<Eroll> eroll = studentService.getEroll();
         for(Eroll e :eroll){
-            if(e.getEdate()!= null) {
-                edateList.add(e.getEdate());
+            if(e.getEddate()!= null) {
+                edateList.add(e.getEddate());
             }
 
             countList.add(e.getCount());

@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class Eroll {
 
-    private String edate;
+    private String eddate;
 
     private Integer count;
 
-    public String getEdate() {
-        return edate;
+    public String getEddate() {
+        return eddate;
     }
 
-    public void setEdate(String edate) {
-        this.edate = edate;
+    public void setEddate(String eddate) {
+        this.eddate = eddate;
     }
 
     public Integer getCount() {
@@ -27,7 +27,7 @@ public class Eroll {
     @Override
     public String toString() {
         return "Eroll{" +
-                "edate=" + edate +
+                "eddate='" + eddate + '\'' +
                 ", count=" + count +
                 '}';
     }

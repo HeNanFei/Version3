@@ -376,7 +376,7 @@
   </select>
 
   <select id="getStudentData" resultType="com.zjt.manager.pojo.result.Eroll">
-     select DATE_FORMAT(edate, '%Y-%m') edate,count(sname) count from student group by edate order by edate;
+    select distinct(DATE_FORMAT(edate, '%Y-%m')) as eddate,count(sid) as count from student group by eddate order by eddate;
   </select>
 
 </mapper>
