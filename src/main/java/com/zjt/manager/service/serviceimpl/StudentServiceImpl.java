@@ -3,6 +3,7 @@ package com.zjt.manager.service.serviceimpl;
 import com.zjt.manager.mapper.StudentMapper;
 import com.zjt.manager.pojo.Student;
 import com.zjt.manager.pojo.StudentExample;
+import com.zjt.manager.pojo.result.Eroll;
 import com.zjt.manager.service.StudentService;
 import com.zjt.manager.service.TeacherService;
 import org.slf4j.Logger;
@@ -93,6 +94,11 @@ public class StudentServiceImpl implements StudentService {
         criteria.andSidEqualTo(uid);
 
         return studentMapper.selectByExample(studentExample).get(0);
+    }
+
+    @Override
+    public List<Eroll> getEroll() {
+        return studentMapper.getStudentData();
     }
 
 

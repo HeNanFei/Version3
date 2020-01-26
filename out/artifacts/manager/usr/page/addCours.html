@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui</title>
+    <title>滇宏教育-添加班级</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -148,16 +148,19 @@
 
 
             var course = JSON.stringify(data.field);
-            layer.alert(JSON.stringify(data.field), {
+           /* layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
-            })
+            })*/
 
 
             $.ajax({
                 url:'../../user/course/add',
                 data:{course:course},
                 success:function (msg) {
-                    layer.alert(msg);
+
+                    layer.alert(msg, {
+                        title: '信息'
+                    });
                 },
                 error:function () {
                     layer.alert('failed');

@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>LayuiMini - 基于Layui的后台管理系统前端模板</title>
+    <title>滇宏教育</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -32,8 +32,10 @@
 <div class="layui-layout layui-layout-admin">
 
     <div class="layui-header header">
-        <div class="layui-logo">
-        </div>
+        <%--<div class="layui-logo">
+            <img src="images/logo.png" alt="logo">
+            <h1>滇宏教育</h1>
+        </div>--%>
         <a>
             <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
         </a>
@@ -53,9 +55,6 @@
             <li class="layui-nav-item" lay-unselect>
                 <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
             </li>
-            <li class="layui-nav-item" lay-unselect>
-                <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
-            </li>
             <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
                 <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
             </li>
@@ -63,13 +62,7 @@
                 <a href="javascript:;">admin</a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" data-iframe-tab="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:;" data-iframe-tab="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
-                    </dd>
-                    <dd>
-                        <a href="javascript:;" class="login-out">退出登录</a>
+                        <a href="../logout" class="login-out">退出登录</a>
                     </dd>
                 </dl>
             </li>

@@ -3,6 +3,8 @@ package com.zjt.manager.mapper;
 import com.zjt.manager.pojo.Student;
 import com.zjt.manager.pojo.StudentExample;
 import java.util.List;
+
+import com.zjt.manager.pojo.result.Eroll;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -99,6 +101,8 @@ public interface StudentMapper {
     List<Student> selectByLimit(Integer page, Integer limit);
 
     List<Student> selectByCriteron(String sname);
+
+    List<Eroll> getStudentData();
 
 
 

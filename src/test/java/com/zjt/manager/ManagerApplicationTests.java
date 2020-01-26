@@ -5,9 +5,12 @@ package com.zjt.manager;
 import com.alibaba.fastjson.JSON;
 
 import com.zjt.manager.mapper.ScoreMapper;
+import com.zjt.manager.mapper.StudentMapper;
 import com.zjt.manager.mapper.TeacherMapper;
 import com.zjt.manager.pojo.Score;
+import com.zjt.manager.pojo.Student;
 import com.zjt.manager.pojo.Teacher;
+import com.zjt.manager.pojo.result.Eroll;
 import com.zjt.manager.pojo.result.ScoreResult;
 import com.zjt.manager.pojo.result.SourceData;
 import com.zjt.manager.pojo.search.SearchCriteron;
@@ -34,6 +37,10 @@ class ManagerApplicationTests {
 	private CourseService courseService;
 	@Autowired
 	private ScoreService scoreService;
+	@Autowired
+	private StudentMapper studentMapper;
+
+
 	@Test
 	void contextLoads() {
 
@@ -167,7 +174,15 @@ class ManagerApplicationTests {
 		}
 
 	}
+	@Test
+	public void tttt(){
+		List<Eroll> studentData = studentMapper.getStudentData();
+		for (Eroll e:studentData
+			 ) {
+			System.out.println(studentData);
+		}
 
+	}
 
 
 

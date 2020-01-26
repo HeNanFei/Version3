@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui</title>
+    <title>滇宏教育-学情分析</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -175,7 +175,7 @@
         $(".data-delete-btn").on("click", function () {
             var checkStatus = table.checkStatus('currentTableId')
                 , data = checkStatus.data;
-            layer.alert(JSON.stringify(data));
+            //layer.alert(JSON.stringify(data));
             var strings = '';
             $.each(data,function (i,item) {
                 strings += item.sid+',';
@@ -210,7 +210,7 @@
                     url:'../../score/specificStudent',
                     data:{sname:sname},
                     success:function (msg) {
-                        alert(msg);
+                        //alert(msg);
                     },error:function () {
                         alert('updateFailed');
                     }
