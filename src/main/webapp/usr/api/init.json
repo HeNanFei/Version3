@@ -148,18 +148,6 @@
               "href": "../usr/page/physicsList.html",
               "icon": "fa fa-navicon",
               "target": "_self"
-            },
-            {
-              "title": "学情分析",
-              "href": "../usr/page/evaluateList.html",
-              "icon": "fa fa-navicon",
-              "target": "_self"
-            },
-            {
-              "title": "生源分析",
-              "href": "../usr/page/sourceEvaluate.html",
-              "icon": "fa fa-navicon",
-              "target": "_self"
             }
           ]
         },
@@ -179,6 +167,28 @@
               "title": "资料库",
               "href": "http://www.zjtb.xyz/rs/",
               "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
+
+        {
+          "title": "统计分析",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [
+
+            {
+              "title": "学情分析",
+              "href": "../usr/page/evaluateList.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "生源分析",
+              "href": "../usr/page/sourceEvaluate.html",
+              "icon": "fa fa-navicon",
               "target": "_self"
             }
           ]

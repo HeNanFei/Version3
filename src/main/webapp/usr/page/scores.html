@@ -40,7 +40,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">考试名称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="lname" lay-verify="title" autocomplete="off" placeholder="例：期末考，第一单元测试......" class="layui-input">
+                    <input type="text" name="lname" lay-verify="title" autocomplete="off" placeholder="xxx年级xx科目xx测试" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -177,9 +177,9 @@
 
             var score = JSON.stringify(data.field);
             //alert(score);
-            layer.alert(JSON.stringify(data.field), {
+           /* layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
-            })
+            })*/
 
 
             $.ajax({
@@ -187,6 +187,9 @@
                 data:{score1:score},
                 success:function (msg) {
                     //layer.alert(msg);
+                    layer.alert(JSON.stringify(msg), {
+                        title: '信息'
+                    })
                 },
                 error:function () {
                     layer.alert('failed');
