@@ -32,10 +32,9 @@
 <div class="layui-layout layui-layout-admin">
 
     <div class="layui-header header">
-        <%--<div class="layui-logo">
-            <img src="images/logo.png" alt="logo">
-            <h1>滇宏教育</h1>
-        </div>--%>
+        <div class="layui-logo">
+
+        </div>
         <a>
             <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
         </a>

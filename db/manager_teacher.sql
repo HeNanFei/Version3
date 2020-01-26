@@ -33,7 +33,7 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `tname` (`tname`),
   CONSTRAINT `teacher_chk_1` CHECK (((`tgender` = _utf8mb4'男') or (`tgender` = _utf8mb4'女')))
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES (33,'苏亚雷斯','男','乌拉圭','15159085231','7,1,','巴萨罗纳'),(34,'神雕','男','就是打开','15159085231','7,','akshdf'),(46,'神雕1','男','就是打开','15159085231','7,','akshdf'),(49,'神雕12','男','就是打开','15159085231','7,','akshdf'),(51,'神雕123','男','就是打开','15159085231','7,','akshdf'),(52,'神雕1234','男','就是打开','15159085231','7,','akshdf'),(53,'神雕12345','男','就是打开','15159085231','7,','akshdf'),(54,'神雕123456','男','就是打开','15159085231','7,','akshdf'),(55,'神雕1234567','男','就是打开','15159085231','7,','akshdf'),(56,'神雕12345678','男','就是打开','15159085231','7,','akshdf'),(57,'神雕123456789','男','就是打开','15159085231','7,','akshdf'),(58,'神雕12345678910','男','就是打开','15159085231','7,','akshdf'),(59,'asfjdkj','男','aljsfdl','15159085231','7,','kasdfj'),(60,'asfjdkjs','男','aljsfdl','15159085231','7,','kasdfj'),(61,'asfjdkjsss','男','aljsfdl','15159085231','7,','kasdfj'),(62,'中文','男','云南','15159085231','1,2,','lsafdlk'),(63,'苏神','男','巴萨','15159085231','6,','hh'),(64,'123','男','123','15159085231','1,','kjhij');
+INSERT INTO `teacher` VALUES (66,'李舜时','男','云南师范大学','15159085231','7,2,3,','云南'),(68,'大卫','男','牛津','15159085231','7,6,','牛津');
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-24 15:49:12
+-- Dump completed on 2020-01-26 18:27:40

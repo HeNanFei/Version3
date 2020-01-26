@@ -29,7 +29,7 @@ CREATE TABLE `course` (
   `ctname` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`cid`),
   UNIQUE KEY `cname` (`cname`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (52,'2020年九年级数学三班',33,'苏亚雷斯'),(67,'2020年12月三年级语文四班',33,'苏亚雷斯'),(72,'2020年12月九年级语文三班',29,'苏索'),(73,'2020年1月九年级物理四班',20,'何艳红'),(74,'2020年1月九年级生物四班',20,'何艳红'),(75,'2020年1月九年级化学四班',20,'何艳红'),(76,'2020年1月九年级英语四班',33,'苏亚雷斯');
+INSERT INTO `course` VALUES (77,'2020年九年级数学三班',66,'李舜时'),(78,'2020年九年级英语一班',68,'大卫');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-24 15:49:08
+-- Dump completed on 2020-01-26 18:27:37

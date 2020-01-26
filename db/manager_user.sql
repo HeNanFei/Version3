@@ -29,7 +29,7 @@ CREATE TABLE `user` (
   `type` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (35,'super','$2a$10$kCN9r5pqPt0zIIE5C9GbMuTaLJd7p3IzAKRDtpA.qx7zNkljx5TF2','root'),(36,'lkaksjdkfjka','$2a$10$j/E01nv7kWstRW59CyZ/keNx0HLSgPdqxsUSwXyLnVLyXD0mYKvl6','1,5,'),(37,'lisiljasldf','$2a$10$WdiTVO7Odk9Q3cxR1q/4ge0kja0pg8qJDgKOfpgQMlJuAHxetw7pW','1,2,'),(38,'lisilajsdf','$2a$10$QYEXdVPPPOmk8O7gYzcuge3kk.0qT0is9iP7OcA7rUQ8hdm4qDlsK','7,1,'),(39,'中尉','$2a$10$9frpWBR3dJCyouzho2PszuKXYBMyTsJ1aOS8e5sM3NOC8sy2KzXDu','7,'),(40,'lisi','$2a$10$Nnaat9OoZZAaoX2UBazRh.oNnGUF7JthZiXsYpHg/SEMdm0g8wozW','1,'),(41,'lisi22','$2a$10$JIiD4c8mq78//rs7xoAIGeLk6xY8X.3mNN7rB0l64EXUjalmV0hLW','7,'),(43,'lisi224','$2a$10$.37xBMz0tasqPG/JkoGRV.aeRTZAVOUK3fIkXTrpTd0NEI2wM7Hsu','7,'),(44,'lisi2245','$2a$10$/dglN6ZbEBgcGk6K1PkmUeB4ezOiXgYMGd4T/JwnO.EE41/mxzdIu','7,'),(45,'lisi22456','$2a$10$dqvLKBKCl73gMCurVs4NjenXhRPKaewbLV.tx37wEJkLSUSX8R56S','7,'),(46,'lisi224567','$2a$10$qdu2JnypqTr9pfkJsS79ruQuBAcC8C7iMJd4rLHDcU06VCgpYFoPa','7,'),(47,'lisi2245678','$2a$10$dvpcKvGeKBbOs/CJdqZqkuUPPLe.sXfqMat34gynukllfOmbItmTy','7,'),(48,'lisi22456789','$2a$10$Tmc9rP3UzTgeJJJjd5BHoO0iOl3DMxychCJYyjxt0cpwF6mU20Lfa','7,'),(49,'zzz','$2a$10$rAzFVuLK.72Z6CCd5BpFTejhqtewG93JXDTP.TDYGRIJRyQMqONc2','7,'),(50,'hyh','$2a$10$e6ohBqcvWWF0tUYuZVHYJuqYCsz3elZ2zC0puKGDNOz7/c.iPQIjC','1,'),(52,'hyh2','$2a$10$eRlOtVeXIJel9KNpWbQyBOmmPjNK9iSI6aXu53jTs.g0WMChtWqvS','1,');
+INSERT INTO `user` VALUES (49,'zzz','$2a$10$rAzFVuLK.72Z6CCd5BpFTejhqtewG93JXDTP.TDYGRIJRyQMqONc2','7,'),(56,'李舜时','$2a$10$nj/J3nmIz92zRXVs8er4Qu25fYAQnS0DrTVVBbGy0tfuyd/NFDQH.','7,3,');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-24 15:49:10
+-- Dump completed on 2020-01-26 18:27:38
